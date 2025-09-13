@@ -29,7 +29,8 @@
       <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
       <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">Sign in to your account</h2>
     </div>
-    <form action="#" method="POST" class="space-y-6">
+    <form action="{{ route('admin.sign-in') }}" method="POST" class="space-y-6">
+        @csrf
       <div>
         <div class="col-span-2">
           <input id="email-address" type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address" class="block w-full rounded-t-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-gray-700 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />

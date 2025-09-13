@@ -10,7 +10,7 @@ final readonly class SignInAdminController
 {
     public function __construct(private SignInAdminCommandHandler $signInAdminCommandHandler) {}
 
-    public function __invoke(AdminSignInRequest $request):  RedirectResponse
+    public function __invoke(AdminSignInRequest $request): RedirectResponse
     {
         $this->signInAdminCommandHandler->handle(
             new SignInAdminCommand(

@@ -6,12 +6,10 @@ namespace Admin\Authentication;
 
 use Illuminate\View\View;
 
-
 final readonly class SignInAdminViewController
 {
-   
-    public function __invoke():  View
+    public function __invoke(): View
     {
-        return view('authentication::auth.login');
+        return view('authentication::sign_in');
     }
 }

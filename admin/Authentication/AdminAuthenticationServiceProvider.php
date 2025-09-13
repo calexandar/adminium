@@ -23,9 +23,9 @@ final class AdminAuthenticationServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        // $this->app->bind(StatefulGuard::class, function ($app) {
-        //     return $app->make(SessionGuard::class, ['name' => 'web', 'provider' => $app['auth']->createUserProvider('users'), 'request' => $app->request]);
-        // });
+        $this->app->bind(StatefulGuard::class, function ($app) {
+            return $app->make(SessionGuard::class, ['name' => 'web', 'provider' => $app['auth']->createUserProvider('users'), 'request' => $app->request]);
+        });
 
     }
 
