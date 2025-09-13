@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UserManagement;
-
-use UserManagment\User;
+namespace Admin\UserManagment;
 
 final class UserGetByEmail
 {

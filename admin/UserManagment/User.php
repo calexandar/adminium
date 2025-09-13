@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UserManagment;
+namespace Admin\UserManagment;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

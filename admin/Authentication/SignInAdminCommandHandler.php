@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Admin\Authentication;
 
+use Admin\UserManagment\UserGetByEmail;
 use Exception;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Events\Dispatcher;
-use UserManagement\UserGetByEmail;
 
 final readonly class SignInAdminCommandHandler
 {

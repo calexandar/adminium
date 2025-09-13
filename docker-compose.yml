@@ -1,0 +1,70 @@
+services:
+  traefik:
+    image: traefik:v3.5
+    ports:
+    - "80:80"
+    - "443:443"
+    networks:
+      - adminium
+    volumes:
+      # Mount the Docker socket as read-only so Traefik can listen to events
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./.infrastructure/conf/traefik/dev/traefik.yml:/traefik.yml:ro
+      - ./.infrastructure/conf/traefik/dev/traefik-certs.yml:/traefik-certs.yml
+      - ./.infrastructure/conf/traefik/dev/certificates/:/certificates
+
+  php:
+    build:      
+      target: development
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    volumes:
+      - .:/var/www/html/
+    networks:
+      - adminium
+    depends_on:
+      traefik:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.laravel.rule=HostRegexp(`localhost`)"
+      - "traefik.http.routers.laravel.entrypoints=web"
+      - "traefik.http.services.laravel.loadbalancer.server.port=8080"
+      - "traefik.http.services.laravel.loadbalancer.server.scheme=http"
+
+  mailpit:
+      image: axllent/mailpit
+      networks:
+        - adminium
+      ports:
+        - "8025:8025"
+
+  mysql:
+    image: mysql:8.4 
+    networks:
+      - adminium
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_DATABASE:-adminium}
+      MYSQL_USER: ${DB_USERNAME:-adminium}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-adminium}
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+networks:
+  adminium:
+
+volumes:
+  mysql_data:
+
