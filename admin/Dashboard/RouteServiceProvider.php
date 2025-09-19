@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\Authentication;
+namespace Admin\Dashboard;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +17,7 @@ final class RouteServiceProvider extends BaseServiceProvider
         $this->routes(function (): void {
             Route::middleware('web')
                 ->prefix('admin')
-                ->group(__DIR__.'/authentication-routes.php');
+                ->group(__DIR__.'/dashboard-routes.php');
         });
     }
 }

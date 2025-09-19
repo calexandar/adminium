@@ -5,4 +5,5 @@ declare(strict_types=1);
 return [
     App\Providers\AppServiceProvider::class,
     Admin\Authentication\AdminAuthenticationServiceProvider::class,
+    Admin\Dashboard\DashboardServiceProvider::class,
 ];
