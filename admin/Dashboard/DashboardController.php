@@ -10,6 +10,6 @@ final readonly class DashboardController
 {
     public function __invoke(): View
     {
-        return view('dashboard::admin_layout');
+        return view('dashboard::index');
     }
 }
