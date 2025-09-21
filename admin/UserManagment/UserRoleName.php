@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\UserManagement;
+namespace Admin\UserManagment;
 
 enum UserRoleName: string
 {

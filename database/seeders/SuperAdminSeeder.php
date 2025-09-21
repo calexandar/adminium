@@ -14,7 +14,7 @@ final class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create([
+        $user = User::query()->create([
             'name' => 'Super Admin',
             'email' => 'superadmin@gmail.com',
             'email_verified_at' => now(),
