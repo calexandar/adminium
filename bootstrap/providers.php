@@ -6,4 +6,5 @@ return [
     App\Providers\AppServiceProvider::class,
     Admin\Authentication\AdminAuthenticationServiceProvider::class,
     Admin\Dashboard\DashboardServiceProvider::class,
+    Admin\Users\UsersServiceProvider::class,
 ];
