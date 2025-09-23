@@ -6,10 +6,10 @@ namespace Admin\UserManagment;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 final class User extends Authenticatable
 {
@@ -37,6 +37,11 @@ final class User extends Authenticatable
         'remember_token',
     ];
 
+    protected static function newFactory(): UserFactory
+    {
+        return new UserFactory;
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -48,10 +53,5 @@ final class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-       protected static function newFactory(): UserFactory
-    {
-        return new UserFactory;
     }
 }

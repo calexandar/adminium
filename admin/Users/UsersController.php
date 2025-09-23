@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Admin\Users;
 
-use Illuminate\View\View;
 use Admin\UserManagment\User;
+use Illuminate\View\View;
+use Spatie\Permission\Models\Permission;
 
 final readonly class UsersController
 {
@@ -14,16 +15,18 @@ final readonly class UsersController
         $users = User::with('roles')->get();
 
         return view('users::index', with([
-            'users' => $users
+            'users' => $users,
         ]));
     }
 
     public function edit(string $user): View
     {
         $user = User::find($user);
+        $permissions = Permission::all()->pluck('name');
 
         return view('users::edit', with([
-            'user' => $user
+            'user' => $user,
+            'permissions' => $permissions
         ]));
     }
 }
