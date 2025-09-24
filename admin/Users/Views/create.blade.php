@@ -1,7 +1,8 @@
 @extends('dashboard::admin_layout')
 
 @section('content')
-<form>
+<form action="{{ route('admin.users.store') }}" method="POST">
+  @csrf
   <div class="space-y-12">
     <!-- Personal Information section -->
     <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
@@ -14,25 +15,37 @@
         <div class="sm:col-span-3">
           <label for="name" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Name</label>
           <div class="mt-2">
-            <input id="name" type="text" name="name" value="{{ $user->name }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="name" type="text" name="name"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
         </div>
 
         <div class="sm:col-span-4">
           <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Title</label>
           <div class="mt-2">
-             <input id="title" type="text" name="title" value="{{ $user->title }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+             <input id="title" type="text" name="title"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
         </div>
 
         <div class="sm:col-span-4">
           <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Email address</label>
           <div class="mt-2">
-            <input id="email" type="email" name="email" value="{{ $user->email }}" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="email" type="email" name="email"  autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
         </div>
 
+        <div class="sm:col-span-4">
+          <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Password</label>
+          <div class="mt-2">
+             <input id="title" type="password" name="password"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+          </div>
+        </div>
 
+        <div class="sm:col-span-4">
+          <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Confirm Password</label>
+          <div class="mt-2">
+             <input id="title" type="password" name="confirm_password"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+          </div>
+        </div>
 
         <div class="col-span-full">
           <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Photo</label>
