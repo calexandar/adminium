@@ -15,35 +15,47 @@
         <div class="sm:col-span-3">
           <label for="name" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Name</label>
           <div class="mt-2">
-            <input id="name" type="text" name="name"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+          @if ($errors->has('name'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('name') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
           <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Title</label>
           <div class="mt-2">
-             <input id="title" type="text" name="title"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+             <input id="title" type="text" name="title" value="{{ old('title') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+           @if ($errors->has('title'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
           <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Email address</label>
           <div class="mt-2">
-            <input id="email" type="email" name="email"  autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="email" type="email" name="email" value="{{ old('email') }}"  autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+           @if ($errors->has('email'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('email') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
-          <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Password</label>
+          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Password</label>
           <div class="mt-2">
-             <input id="title" type="password" name="password"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+             <input id="password" type="password" name="password" value="{{ old('password') }}"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+           @if ($errors->has('password'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('password') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
-          <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Confirm Password</label>
+          <label for="password_confirmation" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Confirm Password</label>
           <div class="mt-2">
-             <input id="title" type="password" name="confirm_password"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+             <input id="password_confirmation" type="password" name="password_confirmation"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
         </div>
 
@@ -74,12 +86,14 @@
             @foreach (\Admin\UserManagment\UserPermissionName::cases() as $permission)
               
               <div class="flex items-center gap-x-3">
-                <input id="{{ $permission }}" type="radio" name="permissions[ {{ $permission }} ]" @if(isset($permissions[$permission])) checked @endif value="1" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-white/10 dark:bg-white/5 dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/5 dark:disabled:bg-white/10 dark:disabled:before:bg-white/20 forced-colors:appearance-auto forced-colors:before:hidden" />
+                <input id="{{ $permission }}" type="checkbox" name="permissions[]" value="{{ $permission }}" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-white/10 dark:bg-white/5 dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/5 dark:disabled:bg-white/10 dark:disabled:before:bg-white/20 forced-colors:appearance-auto forced-colors:before:hidden" />
                 <label for="{{ $permission }}" class="block text-sm/6 font-medium text-gray-900 dark:text-white">{{ $permission->label() }}</label>
               </div>
               
             @endforeach
-
+            @if ($errors->has('permissions'))           
+              <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('permissions') }}</p>
+            @endif
           </div>
         </fieldset>
       </div>

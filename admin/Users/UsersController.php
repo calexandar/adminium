@@ -6,7 +6,6 @@ namespace Admin\Users;
 
 use Admin\UserManagment\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 final readonly class UsersController
@@ -23,10 +22,19 @@ final readonly class UsersController
         return view('users::create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(CreateUserRequest $request): RedirectResponse
     {
 
-        dd($request->all());
+        $user = User::create([
+            'name' => $request->string('name'),
+            'title' => $request->input('title'),
+            'email' => $request->string('email'),
+            'password' => $request->string('password'),
+        ]);
+
+        $selectedPermissions = $request->input('permissions', []);
+
+        $user->syncPermissions($selectedPermissions);
 
         return redirect()->route('admin.users.index');
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Admin\Users;
 
+use Admin\UserManagment\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
 
@@ -35,8 +36,10 @@ final class CreateUserRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
+                'unique:'.User::class,
             ],
-            'password' => ['required', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed',  Rules\Password::defaults()],
+            'permissions' => ['required', 'array'],
         ];
     }
 }
