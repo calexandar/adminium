@@ -19,6 +19,6 @@ final readonly class SignInAdminController
             )
         );
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 }

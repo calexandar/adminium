@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Admin\Users;
 
 use Admin\UserManagment\User;
+use Admin\UserManagment\UserRoleName;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -27,7 +28,7 @@ final readonly class UsersController
 
         $user = User::create([
             'name' => $request->string('name'),
-            'title' => $request->input('title'),
+            'title' => $request->string('title'),
             'email' => $request->string('email'),
             'password' => $request->string('password'),
         ]);
@@ -35,6 +36,8 @@ final readonly class UsersController
         $selectedPermissions = $request->input('permissions', []);
 
         $user->syncPermissions($selectedPermissions);
+
+        $user->assignRole(UserRoleName::ADMIN->value);
 
         return redirect()->route('admin.users.index');
     }
@@ -46,13 +49,19 @@ final readonly class UsersController
         return view('users::edit', compact('user'));
     }
 
-    public function update(string $user): RedirectResponse
+    public function update(UpdateUserRequest $request, string $user): RedirectResponse
     {
         $user = User::find($user);
 
-        $user->update(request()->all());
+        $user->name = $request->string('name');
+        $user->title = $request->string('title');
+        $user->email = $request->string('email');
 
-        $user->syncPermissions(request('permissions'));
+        $user->update();
+
+        $selectedPermissions = $request->input('permissions', []);
+
+        $user->syncPermissions($selectedPermissions);
 
         return redirect()->route('admin.users.index');
     }

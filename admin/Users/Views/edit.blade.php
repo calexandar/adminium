@@ -1,7 +1,9 @@
 @extends('dashboard::admin_layout')
 
 @section('content')
-<form>
+<form action="{{ route('admin.users.update', $user) }}" method="POST">
+  @csrf
+  @method('PUT')
   <div class="space-y-12">
     <!-- Personal Information section -->
     <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
@@ -32,7 +34,9 @@
           </div>
         </div>
 
-
+        @if ($errors)           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors }}</p>
+          @endif
 
         <div class="col-span-full">
           <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Photo</label>
@@ -60,8 +64,8 @@
           <div class="mt-6 grid grid-cols-1  md:grid-cols-2 gap-4">
             @foreach (\Admin\UserManagment\UserPermissionName::cases() as $permission)
               
-              <div class="flex items-center gap-x-3">
-                <input id="{{ $permission }}" type="radio" name="permissions[ {{ $permission }} ]" @if(isset($permissions[$permission])) checked @endif value="1" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-white/10 dark:bg-white/5 dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/5 dark:disabled:bg-white/10 dark:disabled:before:bg-white/20 forced-colors:appearance-auto forced-colors:before:hidden" />
+              <div class="flex items-center gap-x-3">               
+                <input id="{{ $permission }}" type="checkbox" name="permissions[]" @if(in_array($permission->value, $user->getAllPermissions()->pluck('name')->toArray())) checked @endif value="{{ $permission }}" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-white/10 dark:bg-white/5 dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/5 dark:disabled:bg-white/10 dark:disabled:before:bg-white/20 forced-colors:appearance-auto forced-colors:before:hidden" />
                 <label for="{{ $permission }}" class="block text-sm/6 font-medium text-gray-900 dark:text-white">{{ $permission->label() }}</label>
               </div>
               
