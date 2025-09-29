@@ -15,9 +15,7 @@ final class AdminAuthenticationServiceProvider extends ServiceProvider
     {
 
         $this->registerCommandHandlers();
-        $this->loadMigrationsFrom(__DIR__.'/Migrations');
         $this->loadViewsFrom(__DIR__.'/Views', 'authentication');
-
         $this->app->register(RouteServiceProvider::class);
     }
 
