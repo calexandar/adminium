@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Admin\Authentication\LogOutController;
-use Admin\Authentication\SignInAdminController;
-use Admin\Authentication\SignInAdminViewController;
+use Admin\Authentication\LogOut\LogOutController;
+use Admin\Authentication\SignIn\SignInAdminController;
+use Admin\Authentication\SignIn\SignInAdminViewController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/sign-in', SignInAdminController::class)

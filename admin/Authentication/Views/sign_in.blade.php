@@ -33,10 +33,16 @@
         @csrf
       <div>
         <div class="col-span-2">
+          @if ($errors->has('email'))           
+            <p id="email-error" class="mb-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('email') }}</p>
+          @endif
           <input id="email-address" type="email" name="email" required placeholder="Email address" autocomplete="email" aria-label="Email address" class="block w-full rounded-t-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-gray-700 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
         </div>
         <div class="-mt-px">
           <input id="password" type="password" name="password" required placeholder="Password" autocomplete="current-password" aria-label="Password" class="block w-full rounded-b-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:relative focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-gray-700 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              @if ($errors->has('password'))           
+                <p id="password-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('password') }}</p>
+              @endif
         </div>
       </div>
 
@@ -58,6 +64,8 @@
           <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Forgot password?</a>
         </div>
       </div>
+
+  
 
       <div>
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">Sign in</button>

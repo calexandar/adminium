@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\Authentication;
+namespace Admin\Authentication\SignIn;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;

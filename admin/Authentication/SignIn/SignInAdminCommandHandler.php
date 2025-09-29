@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Admin\Authentication;
+namespace Admin\Authentication\SignIn;
 
 use Admin\UserManagment\UserGetByEmail;
-use Exception;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Validation\ValidationException;
 
 final readonly class SignInAdminCommandHandler
 {
@@ -22,7 +22,9 @@ final readonly class SignInAdminCommandHandler
 
         if (! $this->statefulGuard->attempt(['email' => $signInAdminCommand->email, 'password' => $signInAdminCommand->password])
         ) {
-            throw new Exception('Invalid credentials');
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
         }
         $user = ($this->userGetByEmail)($signInAdminCommand->email);
 

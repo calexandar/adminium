@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\Authentication;
+namespace Admin\Authentication\LogOut;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
