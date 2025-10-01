@@ -65,4 +65,13 @@ final readonly class UsersController
 
         return redirect()->route('admin.users.index');
     }
+
+    public function destroy(string $user): RedirectResponse
+    {
+        $user = User::find($user);
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index');
+    }
 }
