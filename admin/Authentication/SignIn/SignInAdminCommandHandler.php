@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Admin\Authentication\SignIn;
 
 use Admin\UserManagment\UserGetByEmail;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Validation\ValidationException;
 
 final readonly class SignInAdminCommandHandler

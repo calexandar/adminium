@@ -15,7 +15,7 @@ final class RouteServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->routes(function (): void {
-            Route::middleware(['web', 'auth'])
+            Route::middleware(['web', 'auth', 'can:manage_users'])
                 ->prefix('admin')
                 ->group(__DIR__.'/users-routes.php');
         });
