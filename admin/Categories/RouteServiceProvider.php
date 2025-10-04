@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\Users;
+namespace Admin\Categories;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +15,10 @@ final class RouteServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->routes(function (): void {
-            Route::middleware(['web', 'auth', 'can:manage_users'])
+            Route::middleware(['web', 'auth', 'can:manage_categories'])
                 ->prefix('admin')
                 ->name('admin.')
-                ->group(__DIR__.'/users-routes.php');
+                ->group(__DIR__.'/categories-routes.php');
         });
     }
 }

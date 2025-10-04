@@ -7,4 +7,5 @@ return [
     Admin\Authentication\AdminAuthenticationServiceProvider::class,
     Admin\Dashboard\DashboardServiceProvider::class,
     Admin\Users\UsersServiceProvider::class,
+    Admin\Categories\CategoriesServiceProvider::class,
 ];

@@ -341,7 +341,7 @@
   </main>
 </div>
 
-@include('dashboard::flash_messages')
+  @include('dashboard::flash_messages')
 
   </body>
-  </html>
+</html>
