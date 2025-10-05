@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Admin\Authentication;
 
 use Illuminate\Auth\SessionGuard;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Admin\Authentication\SignIn\SignInAdminCommand;
+use Admin\Authentication\SignIn\SignInAdminCommandHandler;
 
 final class AdminAuthenticationServiceProvider extends ServiceProvider
 {

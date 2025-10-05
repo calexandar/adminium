@@ -11,7 +11,7 @@ final class CategoriesServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        $this->loadViewsFrom(__DIR__.'/Views', 'users');
+        $this->loadViewsFrom(__DIR__.'/Views', 'categories');
 
         $this->app->register(RouteServiceProvider::class);
     }

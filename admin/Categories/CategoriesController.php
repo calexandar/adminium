@@ -13,14 +13,13 @@ final readonly class CategoriesController
 {
     public function index(): View
     {
-        
 
         return view('categories::index');
     }
 
     public function create(): View
     {
-        return view('users::create');
+        return view('categories::create');
     }
 
     public function store(CreateCategoryRequest $request): RedirectResponse
