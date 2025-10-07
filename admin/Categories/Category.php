@@ -17,7 +17,7 @@ final class Category extends Model
      * @var list<string>
      */
     public array $translatable = [
-        'name',
+        'title',
         'description',
         'image_title',
         'image_alt_text',
@@ -34,7 +34,8 @@ final class Category extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'title',
+        'slug',
         'description',
         'order',
         'enabled',
@@ -49,4 +50,19 @@ final class Category extends Model
         'caption',
         'icon',
     ];
+
+     protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($category) {
+            $category->slug = $category->generateUniqueSlug($category->title);
+        });
+        
+        static::updating(function ($category) {
+            if ($category->isDirty('title')) {
+                $category->slug = $category->generateUniqueSlug($category->title, $category->id);
+            }
+        });
+    }
 }
