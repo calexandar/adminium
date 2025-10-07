@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace Admin\UserManagment;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 final class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +23,7 @@ final class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'title',
         'email',
         'password',
     ];
@@ -34,6 +37,11 @@ final class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected static function newFactory(): UserFactory
+    {
+        return new UserFactory;
+    }
 
     /**
      * Get the attributes that should be cast.
