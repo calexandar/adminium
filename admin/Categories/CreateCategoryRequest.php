@@ -28,18 +28,15 @@ final class CreateCategoryRequest extends FormRequest
 
         return [
 
-            'name' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                'unique:'.User::class,
-            ],
-            'password' => ['required', 'confirmed',  Rules\Password::defaults()],
-            'permissions' => ['required', 'array'],
+            'slug' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'caption' => ['required', 'string', 'max:255'],
+            // 'icon' => ['required', 'string', 'max:255'],
+            'cover_image' => ['required', 'string', 'max:255'],
+            'meta_title' => ['required', 'string', 'max:255'],
+            'meta_description' => ['required', 'string', 'max:255'],
+            'meta_keywords' => ['required', 'string', 'max:255'],
         ];
     }
 }

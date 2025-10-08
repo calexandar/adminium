@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<form action="{{ route('admin.users.store') }}" method="POST">
+<form action="{{ route('admin.categories.store') }}" method="POST">
   @csrf
   <div class="space-y-12">
     <!-- Category Information section -->
@@ -40,7 +40,7 @@
         <div class="sm:col-span-3">
           <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Title</label>
           <div class="mt-2">
-            <input id="title" type="text" name="title[mk]"  autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="title" type="text" name="title"  autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
           @if ($errors->has('title'))           
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
@@ -50,7 +50,7 @@
         <div class="sm:col-span-3">
           <label for="slug" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Slug</label>
           <div class="mt-2">
-            <input id="slug" type="text" name="slug[mk]"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="slug" type="text" name="slug"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
           @if ($errors->has('title'))           
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
@@ -60,7 +60,7 @@
         <div class="col-span-full">
           <label for="description" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Description</label>
           <div class="mt-2">
-            <textarea id="description" name="description[mk]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
+            <textarea id="description" name="description" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your category.</p>
         </div>
@@ -68,13 +68,13 @@
         <div class="col-span-full">
           <label for="caption" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Caption</label>
           <div class="mt-2">
-            <textarea id="caption" name="caption[mk]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
+            <textarea id="caption" name="caption" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a caption that will show on hover.</p>
         </div>
 
         <div class="col-span-full">
-          <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Category Icon</label>
+          <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Icon</label>
           <div class="mt-2 flex items-center gap-x-3">
             <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-12 text-gray-300 dark:text-gray-500">
               <path d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -84,16 +84,16 @@
         </div>
 
         <div class="col-span-full">
-          <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Cover photo</label>
+          <label for="cover_image" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Cover image</label>
           <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 dark:border-white/25">
             <div class="text-center">
               <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300 dark:text-gray-600">
                 <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
               </svg>
               <div class="mt-4 flex text-sm/6 text-gray-600 dark:text-gray-400">
-                <label for="file-upload" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:focus-within:outline-indigo-500 dark:hover:text-indigo-300">
+                <label for="cover_image" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:focus-within:outline-indigo-500 dark:hover:text-indigo-300">
                   <span>Upload a file</span>
-                  <input id="file-upload" type="file" name="file-upload" class="sr-only" />
+                  <input id="cover_image" type="file" name="cover_image" class="sr-only" />
                 </label>
                 <p class="pl-1">or drag and drop</p>
               </div>
@@ -105,7 +105,7 @@
         <div class="sm:col-span-4">
           <label for="meta_title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta title</label>
           <div class="mt-2">
-             <input id="meta_title" type="text" name="meta_title[mk]"  autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+             <input id="meta_title" type="text" name="meta_title"  autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
            @if ($errors->has('meta_title'))           
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_title') }}</p>
@@ -115,7 +115,7 @@
         <div class="col-span-full">
           <label for="meta_description" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta description</label>
           <div class="mt-2">
-            <textarea id="meta_descritpion" name="meta_descritpion[mk]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
+            <textarea id="meta_description" name="meta_description" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta descritpion that will appear in search results.</p>
         </div>
@@ -123,13 +123,15 @@
         <div class="col-span-full">
           <label for="meta_keywords" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta keywords</label>
           <div class="mt-2">
-            <input id="meta_keywords" type="text" name="meta_keywords[mk]"  autocomplete="given-meta_keywords" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="meta_keywords" type="text" name="meta_keywords"  autocomplete="given-meta_keywords" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
           @if ($errors->has('meta_keywords'))           
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords') }}</p>
           @endif
         </div>
-
+          @if ($errors->any())
+            {{ $errors->first() }}
+          @endif
       </div>
     </div>
 
@@ -144,7 +146,32 @@
         // instance, using default configuration.
         CKEDITOR.replace( 'description' );
     </script>
+
 </form>
 
 
 @endsection
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('title');
+    const slugInput = document.getElementById('slug');
+
+    titleInput.addEventListener('input', function() {
+        const title = titleInput.value;
+        const slug = generateSlug(title);
+        slugInput.value = slug;
+    });
+
+    function generateSlug(text) {
+        return text
+            .toLowerCase() // Convert to lowercase
+            .trim() // Remove leading/trailing whitespace
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-') // Replace spaces with a single hyphen
+            .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+            .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    }
+});
+</script>

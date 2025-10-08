@@ -19,13 +19,10 @@ final class Category extends Model
     public array $translatable = [
         'title',
         'description',
-        'image_title',
-        'image_alt_text',
-        'meta_keywords',
-        'meta_description',
-        'meta_title',
-        'homepage_image',
         'caption',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     /**
@@ -37,29 +34,25 @@ final class Category extends Model
         'title',
         'slug',
         'description',
-        'order',
-        'enabled',
-        'image',
-        'image_title',
-        'image_alt_text',
-        'meta_keywords',
-        'meta_description',
-        'meta_title',
-        'homepage_image',
-        'logo_image',
         'caption',
         'icon',
+        'cover_image',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'order',
+        'enabled',
     ];
 
-     protected static function boot()
+    protected static function boot()
     {
         parent::boot();
-        
-        static::creating(function ($category) {
+
+        self::creating(function ($category) {
             $category->slug = $category->generateUniqueSlug($category->title);
         });
-        
-        static::updating(function ($category) {
+
+        self::updating(function ($category) {
             if ($category->isDirty('title')) {
                 $category->slug = $category->generateUniqueSlug($category->title, $category->id);
             }

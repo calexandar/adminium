@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Admin\Categories;
 
 use Admin\UserManagment\User;
-use Admin\UserManagment\UserRoleName;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -25,20 +24,12 @@ final readonly class CategoriesController
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
 
-        $user = User::create([
-            'name' => $request->string('name'),
+        dd($request->all());
+        $category = Category::create([
             'title' => $request->string('title'),
-            'email' => $request->string('email'),
-            'password' => $request->string('password'),
         ]);
 
-        $selectedPermissions = $request->input('permissions', []);
-
-        $user->syncPermissions($selectedPermissions);
-
-        $user->assignRole(UserRoleName::ADMIN->value);
-
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.categories.index');
     }
 
     public function edit(string $user): View
