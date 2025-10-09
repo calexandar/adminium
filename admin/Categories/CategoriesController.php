@@ -24,9 +24,17 @@ final readonly class CategoriesController
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
 
-        dd($request->all());
+      
         $category = Category::create([
             'title' => $request->string('title'),
+            'slug' => $request->string('slug'),
+            'description' => $request->string('description'),
+            'caption' => $request->string('caption'),
+            // 'icon' => $request->string('icon'),
+            'cover_image' => $request->string('cover_image'),
+            'meta_title' => $request->string('meta_title'),
+            'meta_description' => $request->string('meta_description'),
+            'meta_keywords' => $request->string('meta_keywords'),
         ]);
 
         return redirect()->route('admin.categories.index');
