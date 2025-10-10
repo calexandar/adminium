@@ -44,18 +44,18 @@ final class Category extends Model
         'enabled',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        self::creating(function ($category) {
-            $category->slug = $category->generateUniqueSlug($category->title);
-        });
+    //     self::creating(function ($category) {
+    //         $category->slug = $category->generateUniqueSlug($category->title);
+    //     });
 
-        self::updating(function ($category) {
-            if ($category->isDirty('title')) {
-                $category->slug = $category->generateUniqueSlug($category->title, $category->id);
-            }
-        });
-    }
+    //     self::updating(function ($category) {
+    //         if ($category->isDirty('title')) {
+    //             $category->slug = $category->generateUniqueSlug($category->title, $category->id);
+    //         }
+    //     });
+    // }
 }

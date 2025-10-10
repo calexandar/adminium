@@ -12,8 +12,9 @@ final readonly class CategoriesController
 {
     public function index(): View
     {
+        $categories = Category::all();
 
-        return view('categories::index');
+        return view('categories::index', compact('categories'));
     }
 
     public function create(): View
@@ -24,7 +25,6 @@ final readonly class CategoriesController
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
 
-      
         $category = Category::create([
             'title' => $request->string('title'),
             'slug' => $request->string('slug'),

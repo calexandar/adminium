@@ -52,8 +52,8 @@
           <div class="mt-2">
             <input id="slug" type="text" name="slug"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-          @if ($errors->has('title'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
+          @if ($errors->has('slug'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
           @endif
         </div>
 
@@ -63,6 +63,9 @@
             <textarea id="description" name="description" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your category.</p>
+            @if ($errors->has('description'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('description') }}</p>
+          @endif
         </div>
 
         <div class="col-span-full">
@@ -71,6 +74,9 @@
             <textarea id="caption" name="caption" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a caption that will show on hover.</p>
+          @if ($errors->has('caption'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('caption') }}</p>
+          @endif
         </div>
 
         <div class="col-span-full">
@@ -100,6 +106,9 @@
               <p class="text-xs/5 text-gray-600 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
             </div>
           </div>
+          @if ($errors->has('cover_image'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('cover_image') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
@@ -118,6 +127,9 @@
             <textarea id="meta_description" name="meta_description" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
           </div>
           <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta descritpion that will appear in search results.</p>
+          @if ($errors->has('meta_description'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_description') }}</p>
+          @endif
         </div>
 
         <div class="col-span-full">
@@ -129,9 +141,6 @@
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords') }}</p>
           @endif
         </div>
-          @if ($errors->any())
-            {{ $errors->first() }}
-          @endif
       </div>
     </div>
 
