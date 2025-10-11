@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<form action="{{ route('admin.categories.store') }}" method="POST">
+<form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="space-y-12">
     <!-- Category Information section -->

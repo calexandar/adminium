@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Admin\UserManagment\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules;
 
 final class CreateCategoryRequest extends FormRequest
 {
@@ -29,11 +27,11 @@ final class CreateCategoryRequest extends FormRequest
         return [
 
             'title' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', 'unique:'.Category::class],
             'description' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
             // 'icon' => ['required', 'string', 'max:255'],
-            'cover_image' => ['required', 'string', 'max:255'],
+            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'meta_title' => ['required', 'string', 'max:255'],
             'meta_description' => ['required', 'string', 'max:255'],
             'meta_keywords' => ['required', 'string', 'max:255'],

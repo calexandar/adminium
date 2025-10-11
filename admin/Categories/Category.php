@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Admin\Categories;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
-final class Category extends Model
+final class Category extends Model implements HasMedia
 {
-    use HasTranslations;
+    use HasTranslations, InteractsWithMedia;
 
     /**
      * The attributes that are translatable.
@@ -57,5 +61,13 @@ final class Category extends Model
     //             $category->slug = $category->generateUniqueSlug($category->title, $category->id);
     //         }
     //     });
+    // }
+
+    //     public function registerMediaConversions(?Media $media = null): void
+    // {
+    //     $this
+    //         ->addMediaConversion('preview')
+    //         ->fit(Fit::Contain, 300, 300)
+    //         ->nonQueued();
     // }
 }

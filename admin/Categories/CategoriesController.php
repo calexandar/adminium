@@ -37,6 +37,8 @@ final readonly class CategoriesController
             'meta_keywords' => $request->string('meta_keywords'),
         ]);
 
+        $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
+
         return redirect()->route('admin.categories.index');
     }
 
