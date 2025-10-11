@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Kra8\Snowflake\HasShortflakePrimary;
+use Spatie\Translatable\HasTranslations;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Translatable\HasTranslations;
 
 final class Category extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia;
+    use HasTranslations, InteractsWithMedia, HasShortflakePrimary;
 
     /**
      * The attributes that are translatable.
