@@ -14,10 +14,11 @@ final class CustomPathGenerator implements PathGenerator
      */
     public function getPath(Media $media): string
     {
+        $imagesFolder = 'images';
         $collection = $media->collection_name;
         $folder = $media->model_id;
 
-        return "{$collection}/{$folder}/";
+        return "{$imagesFolder}/{$collection}/{$folder}/";
     }
 
     /*

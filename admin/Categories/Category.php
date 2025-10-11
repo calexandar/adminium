@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Spatie\Image\Enums\Fit;
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Kra8\Snowflake\HasShortflakePrimary;
-use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 final class Category extends Model implements HasMedia
 {
-    use HasTranslations, InteractsWithMedia, HasShortflakePrimary;
+    use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
     /**
      * The attributes that are translatable.
@@ -48,27 +46,4 @@ final class Category extends Model implements HasMedia
         'order',
         'enabled',
     ];
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     self::creating(function ($category) {
-    //         $category->slug = $category->generateUniqueSlug($category->title);
-    //     });
-
-    //     self::updating(function ($category) {
-    //         if ($category->isDirty('title')) {
-    //             $category->slug = $category->generateUniqueSlug($category->title, $category->id);
-    //         }
-    //     });
-    // }
-
-    //     public function registerMediaConversions(?Media $media = null): void
-    // {
-    //     $this
-    //         ->addMediaConversion('preview')
-    //         ->fit(Fit::Contain, 300, 300)
-    //         ->nonQueued();
-    // }
 }
