@@ -115,13 +115,23 @@
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('cover_image') }}</p>
           @endif
         </div>
+      </div>
+    </div>
 
+    <!-- Category SEO section -->
+    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
+      <div>
+        <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">SEO</h2>
+        <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">SEO can be used to improve your category's visibility and organic search rankings.</p>
+      </div>
+
+      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
         <div class="sm:col-span-4">
           <label for="meta_title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta title</label>
           <div class="mt-2">
-             <input id="meta_title" type="text" name="meta_title"  value="{{ $category->getTranslations('meta_title')[app()->getLocale()] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+            <input id="meta_title" type="text" name="meta_title"  value="{{ $category->getTranslations('meta_title')[app()->getLocale()] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-           @if ($errors->has('meta_title'))           
+          @if ($errors->has('meta_title'))           
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_title') }}</p>
           @endif
         </div>
@@ -148,9 +158,8 @@
             <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords') }}</p>
           @endif
         </div>
-      </div>
+      </div>  
     </div>
-
   </div>
 
   <div class="mt-6 flex items-center justify-end gap-x-6">
