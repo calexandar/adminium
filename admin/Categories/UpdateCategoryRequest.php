@@ -28,17 +28,15 @@ final class UpdateCategoryRequest extends FormRequest
 
         return [
 
-            'name' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                // Rule::unique(User::class)->ignore(request()->user()),
-            ],
-            'permissions' => ['required', 'array'],
+            'slug' => ['required', 'string', 'max:255', 'unique:'.Category::class],
+            'description' => ['required', 'string', 'max:255'],
+            'caption' => ['required', 'string', 'max:255'],
+            // 'icon' => ['required', 'string', 'max:255'],
+            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'meta_title' => ['required', 'string', 'max:255'],
+            'meta_description' => ['required', 'string', 'max:255'],
+            'meta_keywords' => ['required', 'string', 'max:255'],
         ];
     }
 }

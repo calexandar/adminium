@@ -42,28 +42,20 @@ final readonly class CategoriesController
         return redirect()->route('admin.categories.index');
     }
 
-    public function edit(string $user): View
+    public function edit(string $category): View
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        return view('users::edit', compact('user'));
+        return view('categories::edit', compact('category'));
     }
 
-    public function update(UpdateCategoryRequest $request, string $user): RedirectResponse
+    public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        $user->name = $request->string('name');
-        $user->title = $request->string('title');
-        $user->email = $request->string('email');
 
-        $user->update();
 
-        $selectedPermissions = $request->input('permissions', []);
-
-        $user->syncPermissions($selectedPermissions);
-
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
     public function destroy(string $user): RedirectResponse
