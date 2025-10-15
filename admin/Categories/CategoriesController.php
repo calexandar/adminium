@@ -30,8 +30,6 @@ final readonly class CategoriesController
             'slug' => $request->string('slug'),
             'description' => $request->string('description'),
             'caption' => $request->string('caption'),
-            // 'icon' => $request->string('icon'),
-            'cover_image' => $request->string('cover_image'),
             'meta_title' => $request->string('meta_title'),
             'meta_description' => $request->string('meta_description'),
             'meta_keywords' => $request->string('meta_keywords'),
