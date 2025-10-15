@@ -35,6 +35,7 @@ final readonly class CategoriesController
             'meta_keywords' => $request->string('meta_keywords'),
         ]);
 
+        $category->addMediaFromRequest('icon')->toMediaCollection('icons');
         $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
 
         return redirect()->route('admin.categories.index');
@@ -50,8 +51,6 @@ final readonly class CategoriesController
     public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
     {
         $category = Category::find($category);
-
-
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }

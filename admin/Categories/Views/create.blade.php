@@ -89,6 +89,9 @@
             <button id="changeIcon"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
             <p id="iconName" class="text-gray-500 dark:text-gray-400">No file selected</p>
           </div>
+          @if ($errors->has('icon'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('icon') }}</p>
+          @endif
         </div>
 
         <div class="col-span-full">

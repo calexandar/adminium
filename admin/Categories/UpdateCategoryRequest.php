@@ -6,7 +6,6 @@ namespace Admin\Categories;
 
 use Admin\UserManagment\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 final class UpdateCategoryRequest extends FormRequest
 {
