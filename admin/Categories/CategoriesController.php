@@ -44,8 +44,9 @@ final readonly class CategoriesController
     public function edit(string $category): View
     {
         $category = Category::find($category);
+        $iconName = $category->getFirstMedia('icons')->file_name;
 
-        return view('categories::edit', compact('category'));
+        return view('categories::edit', compact('category', 'iconName'));
     }
 
     public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
