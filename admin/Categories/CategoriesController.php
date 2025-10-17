@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Admin\UserManagment\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -38,30 +37,43 @@ final readonly class CategoriesController
         $category->addMediaFromRequest('icon')->toMediaCollection('icons');
         $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
     public function edit(string $category): View
     {
         $category = Category::find($category);
-        $iconName = $category->getFirstMedia('icons')->file_name;
 
-        return view('categories::edit', compact('category', 'iconName'));
+        return view('categories::edit', compact('category'));
     }
 
     public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
     {
         $category = Category::find($category);
 
+        $category->fill($request->validated());
+
+        $category->update();
+
+        if ($request->hasFile('icon')) {
+            $category->clearMediaCollection('icons');
+            $category->addMediaFromRequest('icon')->toMediaCollection('icons');
+        }
+
+        if ($request->hasFile('cover_image')) {
+            $category->clearMediaCollection('categories');
+            $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
+        }
+
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
-    public function destroy(string $user): RedirectResponse
+    public function destroy(string $category): RedirectResponse
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        $user->delete();
+        $category->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     }
 }

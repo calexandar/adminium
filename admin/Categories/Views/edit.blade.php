@@ -94,8 +94,13 @@
                 <path d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" fill-rule="evenodd" />
               </svg>
             @endif  
-            <button type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
+            <input id="icon" type="file" name="icon" class="sr-only" />
+            <button id="changeIcon"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
+            <p id="iconName" class="text-gray-500 dark:text-gray-400">No file selected</p>
           </div>
+          @if ($errors->has('icon'))           
+            <p id="icon" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('icon') }}</p>
+          @endif
         </div>
 
         <div class="col-span-full">
@@ -184,3 +189,47 @@
 
 
 @endsection
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('title');
+    const slugInput = document.getElementById('slug');
+
+    titleInput.addEventListener('input', function() {
+        const title = titleInput.value;
+        const slug = generateSlug(title);
+        slugInput.value = slug;
+    });
+
+    function generateSlug(text) {
+        return text
+            .toLowerCase() // Convert to lowercase
+            .trim() // Remove leading/trailing whitespace
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-') // Replace spaces with a single hyphen
+            .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+            .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    }
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const changeButton = document.getElementById('changeIcon');
+        const photoInput = document.getElementById('icon');
+        const fileNameElement = document.getElementById('iconName');
+
+       changeButton.addEventListener('click', () => {
+        photoInput.click();
+    });
+
+    photoInput.addEventListener('change', () => {
+        const file = photoInput.files[0];
+        if (file) {
+            fileNameElement.textContent = file.name;
+        } else {
+            fileNameElement.textContent = 'No file selected';
+        }
+    });
+});
+</script>
