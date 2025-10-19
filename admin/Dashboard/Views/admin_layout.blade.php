@@ -16,6 +16,9 @@
         <!-- CKEditor -->
         <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
+        <!-- Sortable -->
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -364,5 +367,6 @@
 
   @include('dashboard::flash_messages')
 
+  @yield('custom_script')
   </body>
 </html>

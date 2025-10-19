@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 final readonly class CategoriesController
 {
     public function index(): View
     {
-        $categories = Category::paginate(10);
+        $categories = Category::query()
+            ->orderBy('order', 'asc')
+            ->paginate(10);
 
         return view('categories::index', compact('categories'));
     }
@@ -75,5 +78,18 @@ final readonly class CategoriesController
         $category->delete();
 
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
+    }
+
+     public function reorder(Request $request)
+    {
+         $order = $request->input('order');
+
+        foreach ($order as $item) {
+            // Find the item in your database by its ID and update its order
+            Category::where('id', $item['id'])->update(['order' => $item['order']]);
+        }
+
+ 
+        return redirect()->route('admin.categories.index');
     }
 }
