@@ -18,7 +18,7 @@
             <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
           @if ($errors->has('name'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('name') }}</p>
+            <p id="name-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('name') }}</p>
           @endif
         </div>
 
@@ -28,7 +28,7 @@
              <input id="title" type="text" name="title" value="{{ old('title') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
            @if ($errors->has('title'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
+            <p id="title-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
           @endif
         </div>
 
@@ -48,7 +48,7 @@
              <input id="password" type="password" name="password" value="{{ old('password') }}"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
            @if ($errors->has('password'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('password') }}</p>
+            <p id="password-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('password') }}</p>
           @endif
         </div>
 
@@ -92,7 +92,7 @@
               
             @endforeach
             @if ($errors->has('permissions'))           
-              <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('permissions') }}</p>
+              <p id="permissions-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('permissions') }}</p>
             @endif
           </div>
         </fieldset>

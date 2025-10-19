@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Admin\Categories;
 
 use Illuminate\Database\Eloquent\Model;
+use Kra8\Snowflake\HasShortflakePrimary;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-final class Category extends Model
+final class Category extends Model implements HasMedia
 {
-    use HasTranslations;
+    use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
     /**
      * The attributes that are translatable.
@@ -17,15 +20,12 @@ final class Category extends Model
      * @var list<string>
      */
     public array $translatable = [
-        'name',
+        'title',
         'description',
-        'image_title',
-        'image_alt_text',
-        'meta_keywords',
-        'meta_description',
-        'meta_title',
-        'homepage_image',
         'caption',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     /**
@@ -34,19 +34,16 @@ final class Category extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'title',
+        'slug',
         'description',
-        'order',
-        'enabled',
-        'image',
-        'image_title',
-        'image_alt_text',
-        'meta_keywords',
-        'meta_description',
-        'meta_title',
-        'homepage_image',
-        'logo_image',
         'caption',
         'icon',
+        'cover_image',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'order',
+        'enabled',
     ];
 }

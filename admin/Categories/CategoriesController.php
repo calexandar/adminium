@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Admin\UserManagment\User;
-use Admin\UserManagment\UserRoleName;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 final readonly class CategoriesController
 {
     public function index(): View
     {
+        $categories = Category::query()
+            ->orderBy('order', 'asc')
+            ->paginate(10);
 
-        return view('categories::index');
+        return view('categories::index', compact('categories'));
     }
 
     public function create(): View
@@ -25,52 +27,69 @@ final readonly class CategoriesController
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
 
-        $user = User::create([
-            'name' => $request->string('name'),
+        $category = Category::create([
             'title' => $request->string('title'),
-            'email' => $request->string('email'),
-            'password' => $request->string('password'),
+            'slug' => $request->string('slug'),
+            'description' => $request->string('description'),
+            'caption' => $request->string('caption'),
+            'meta_title' => $request->string('meta_title'),
+            'meta_description' => $request->string('meta_description'),
+            'meta_keywords' => $request->string('meta_keywords'),
         ]);
 
-        $selectedPermissions = $request->input('permissions', []);
+        $category->addMediaFromRequest('icon')->toMediaCollection('icons');
+        $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
 
-        $user->syncPermissions($selectedPermissions);
-
-        $user->assignRole(UserRoleName::ADMIN->value);
-
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
-    public function edit(string $user): View
+    public function edit(string $category): View
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        return view('users::edit', compact('user'));
+        return view('categories::edit', compact('category'));
     }
 
-    public function update(UpdateCategoryRequest $request, string $user): RedirectResponse
+    public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        $user->name = $request->string('name');
-        $user->title = $request->string('title');
-        $user->email = $request->string('email');
+        $category->fill($request->validated());
 
-        $user->update();
+        $category->update();
 
-        $selectedPermissions = $request->input('permissions', []);
+        if ($request->hasFile('icon')) {
+            $category->clearMediaCollection('icons');
+            $category->addMediaFromRequest('icon')->toMediaCollection('icons');
+        }
 
-        $user->syncPermissions($selectedPermissions);
+        if ($request->hasFile('cover_image')) {
+            $category->clearMediaCollection('categories');
+            $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
+        }
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
-    public function destroy(string $user): RedirectResponse
+    public function destroy(string $category): RedirectResponse
     {
-        $user = User::find($user);
+        $category = Category::find($category);
 
-        $user->delete();
+        $category->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
+    }
+
+     public function reorder(Request $request)
+    {
+         $order = $request->input('order');
+
+        foreach ($order as $item) {
+            // Find the item in your database by its ID and update its order
+            Category::where('id', $item['id'])->update(['order' => $item['order']]);
+        }
+
+ 
+        return redirect()->route('admin.categories.index');
     }
 }

@@ -12,6 +12,7 @@ final class CategoriesServiceProvider extends ServiceProvider
     {
 
         $this->loadViewsFrom(__DIR__.'/Views', 'categories');
+        $this->loadMigrationsFrom(__DIR__.'/Migrations');
 
         $this->app->register(RouteServiceProvider::class);
     }

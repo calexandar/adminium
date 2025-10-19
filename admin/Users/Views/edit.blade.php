@@ -18,6 +18,9 @@
           <div class="mt-2">
             <input id="name" type="text" name="name" value="{{ $user->name }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+          @if ($errors->has('name'))           
+            <p id="name-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('name') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
@@ -25,6 +28,9 @@
           <div class="mt-2">
              <input id="title" type="text" name="title" value="{{ $user->title }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
+          @if ($errors->has('title'))           
+            <p id="title-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
+          @endif
         </div>
 
         <div class="sm:col-span-4">
@@ -32,11 +38,10 @@
           <div class="mt-2">
             <input id="email" type="email" name="email" value="{{ $user->email }}" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-        </div>
-
-        @if ($errors)           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors }}</p>
+          @if ($errors->has('email'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('email') }}</p>
           @endif
+        </div>
 
         <div class="col-span-full">
           <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Photo</label>
@@ -70,7 +75,9 @@
               </div>
               
             @endforeach
-
+            @if ($errors->has('permissions'))           
+              <p id="permissions-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('permissions') }}</p>
+            @endif
           </div>
         </fieldset>
       </div>

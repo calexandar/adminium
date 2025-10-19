@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Admin\UserManagment\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,17 +27,15 @@ final class UpdateCategoryRequest extends FormRequest
 
         return [
 
-            'name' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                // Rule::unique(User::class)->ignore(request()->user()),
-            ],
-            'permissions' => ['required', 'array'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Category::class)->ignore($this->route()->parameter('category'))],
+            'description' => ['required', 'string', 'max:255'],
+            'caption' => ['required', 'string', 'max:255'],
+            'icon' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'cover_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'meta_title' => ['required', 'string', 'max:255'],
+            'meta_description' => ['required', 'string', 'max:255'],
+            'meta_keywords' => ['required', 'string', 'max:255'],
         ];
     }
 }

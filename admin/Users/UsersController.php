@@ -39,7 +39,7 @@ final readonly class UsersController
 
         $user->assignRole(UserRoleName::ADMIN->value);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
     }
 
     public function edit(string $user): View
@@ -53,9 +53,7 @@ final readonly class UsersController
     {
         $user = User::find($user);
 
-        $user->name = $request->string('name');
-        $user->title = $request->string('title');
-        $user->email = $request->string('email');
+        $user->fill($request->validated());
 
         $user->update();
 
