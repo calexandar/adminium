@@ -1,7 +1,7 @@
 @extends('dashboard::admin_layout')
 
 @section('content')
-<form action="{{ route('admin.users.store') }}" method="POST">
+<form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="space-y-12">
     <!-- Personal Information section -->
@@ -60,13 +60,18 @@
         </div>
 
         <div class="col-span-full">
-          <label for="photo" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Photo</label>
+          <label for="avatar" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Avatar</label>
           <div class="mt-2 flex items-center gap-x-3">
-            <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-12 text-gray-300 dark:text-gray-500">
+            <svg viewBox="0 0 24 24" fill="currentColor" data-slot="avatar" aria-hidden="true" class="size-12 text-gray-300 dark:text-gray-500">
               <path d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" fill-rule="evenodd" />
             </svg>
-            <button type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
+            <input id="avatar" type="file" name="avatar" class="sr-only" />
+            <button id="changeAvatar"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
+            <p id="avatarName" class="text-gray-500 dark:text-gray-400">No file selected</p>
           </div>
+          @if ($errors->has('avatar'))           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('avatar') }}</p>
+          @endif
         </div>
 
       </div>
@@ -108,3 +113,25 @@
 
 
 @endsection
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const changeButton = document.getElementById('changeAvatar');
+        const photoInput = document.getElementById('avatar');
+        const fileNameElement = document.getElementById('avatarName');
+
+       changeButton.addEventListener('click', () => {
+        photoInput.click();
+    });
+
+    photoInput.addEventListener('change', () => {
+        const file = photoInput.files[0];
+        if (file) {
+            fileNameElement.textContent = file.name;
+        } else {
+            fileNameElement.textContent = 'No file selected';
+        }
+    });
+});
+</script>

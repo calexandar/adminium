@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Admin\Categories;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 final readonly class CategoriesController
 {
@@ -80,16 +80,15 @@ final readonly class CategoriesController
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     }
 
-     public function reorder(Request $request)
+    public function reorder(Request $request)
     {
-         $order = $request->input('order');
+        $order = $request->input('order');
 
         foreach ($order as $item) {
             // Find the item in your database by its ID and update its order
             Category::where('id', $item['id'])->update(['order' => $item['order']]);
         }
 
- 
         return redirect()->route('admin.categories.index');
     }
 }

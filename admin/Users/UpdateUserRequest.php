@@ -31,6 +31,7 @@ final class UpdateUserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->route()->parameter('user'))],
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:1024'],
             'permissions' => ['required', 'array'],
         ];
     }

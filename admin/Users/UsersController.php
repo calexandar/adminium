@@ -33,6 +33,8 @@ final readonly class UsersController
             'password' => $request->string('password'),
         ]);
 
+        $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
         $selectedPermissions = $request->input('permissions', []);
 
         $user->syncPermissions($selectedPermissions);
@@ -56,6 +58,11 @@ final readonly class UsersController
         $user->fill($request->validated());
 
         $user->update();
+
+        if ($request->hasFile('avatar')) {
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
 
         $selectedPermissions = $request->input('permissions', []);
 
