@@ -9,9 +9,9 @@
 <div class=mb-4>
   <div class="grid grid-cols-1 sm:hidden">
     <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-    <select aria-label="Select a tab" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-2 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-gray-100 dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500">
+    <select id="tab-select" aria-label="Select a tab" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-2 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-gray-100 dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500">
       @foreach ($locales as $locale )
-        <option>{{ strtoupper($locale) }}</option>
+        <option  value="{{ $locale }}" >{{ strtoupper($locale) }}</option>
       @endforeach
       {{-- <option selected>Team Members</option> --}}
     </select>
@@ -24,7 +24,7 @@
       <nav aria-label="Tabs" class="-mb-px flex space-x-8">
         @foreach ($locales as $locale )
         <!-- Current: "border-indigo-500 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400", Default: "border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-700 dark:hover:text-gray-200" -->
-        <a href="#" class="border-b-2 border-transparent px-1 py-4 text-sm font-medium whitespace-nowrap text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"><span class="fi fi-{{ $locale === 'en' ? 'gb' : $locale }}"></span> {{ strtoupper($locale) }}</a>
+        <button id="tab-{{ $locale }}" class="border-b-2 border-transparent px-1 py-4 text-sm font-medium whitespace-nowrap text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"><span class="fi fi-{{ $locale === 'en' ? 'gb' : $locale }}"></span> {{ strtoupper($locale) }}</button>
         @endforeach
         {{-- <a href="#" aria-current="page" class="border-b-2 border-indigo-500 px-1 py-4 text-sm font-medium whitespace-nowrap text-indigo-600 dark:border-indigo-400 dark:text-indigo-400"><span class="fi fi-al"></span> AL</a> --}}
       </nav>
@@ -217,4 +217,38 @@
         }
     });
 });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const tabSelect = document.getElementById('tab-select');
+  const tabs = document.querySelectorAll('.nav a');
+
+  tabSelect.addEventListener('change', function() {
+    const selectedTab = tabSelect.value;
+    const tabLinks = document.querySelectorAll('.nav a');
+
+    tabLinks.forEach(function(tabLink) {
+      tabLink.classList.remove('border-indigo-500');
+      tabLink.classList.remove('dark:border-indigo-400');
+      tabLink.classList.remove('text-indigo-600');
+      tabLink.classList.remove('dark:text-indigo-400');
+    });
+
+    const selectedTabLink = document.getElementById(selectedTab);
+    selectedTabLink.classList.add('border-indigo-500');
+    selectedTabLink.classList.add('dark:border-indigo-400');
+    selectedTabLink.classList.add('text-indigo-600');
+    selectedTabLink.classList.add('dark:text-indigo-400');
+
+    // Loop through each locale tab
+    tabs.forEach(function(tab) {
+      const locale = tab.id.substring(4);
+      if (locale === selectedTab) {
+        // Do something with the selected locale tab
+        console.log('Selected locale tab:', locale);
+      }
+    });
+  }); 
+});     
 </script>
