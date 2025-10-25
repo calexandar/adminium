@@ -26,15 +26,15 @@ final class CreateCategoryRequest extends FormRequest
 
         return [
 
-            'title' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Category::class],
-            'description' => ['required', 'string', 'max:255'],
-            'caption' => ['required',  'string', 'max:255'],
+            'title.en' => ['required', 'string', 'max:255'],
+            'slug.en' => ['required', 'string', 'max:255', 'unique:'.Category::class],
+            'description.en' => ['required', 'string', 'max:255'],
+            'caption.en' => ['required',  'string', 'max:255'],
             'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-            'meta_title' => ['required', 'string', 'max:255'],
-            'meta_description' => ['required', 'string', 'max:255'],
-            'meta_keywords' => ['required', 'string', 'max:255'],
+            'meta_title.en' => ['required', 'string', 'max:255'],
+            'meta_description.en' => ['required', 'string', 'max:255'],
+            'meta_keywords.en' => ['required', 'string', 'max:255'],
         ];
     }
 }
