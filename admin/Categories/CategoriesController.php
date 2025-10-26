@@ -28,13 +28,13 @@ final readonly class CategoriesController
     {
 
         $category = Category::create([
-            'title' => $request->string('title'),
+            'title' => $request->array('title'),
             'slug' => $request->string('slug'),
-            'description' => $request->string('description'),
-            'caption' => $request->string('caption'),
-            'meta_title' => $request->string('meta_title'),
-            'meta_description' => $request->string('meta_description'),
-            'meta_keywords' => $request->string('meta_keywords'),
+            'description' => $request->array('description'),
+            'caption' => $request->array('caption'),
+            'meta_title' => $request->array('meta_title'),
+            'meta_description' => $request->array('meta_description'),
+            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
         $category->addMediaFromRequest('icon')->toMediaCollection('icons');
