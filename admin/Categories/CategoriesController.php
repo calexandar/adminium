@@ -56,8 +56,6 @@ final readonly class CategoriesController
 
         $category->fill($request->validated());
 
-        $category->update();
-
         if ($request->hasFile('icon')) {
             $category->clearMediaCollection('icons');
             $category->addMediaFromRequest('icon')->toMediaCollection('icons');
@@ -67,6 +65,8 @@ final readonly class CategoriesController
             $category->clearMediaCollection('categories');
             $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
         }
+
+        $category->save();
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
@@ -80,7 +80,7 @@ final readonly class CategoriesController
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     }
 
-    public function reorder(Request $request)
+    public function reorder(Request $request): RedirectResponse
     {
         $order = $request->input('order');
 

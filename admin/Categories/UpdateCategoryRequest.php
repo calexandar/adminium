@@ -27,15 +27,15 @@ final class UpdateCategoryRequest extends FormRequest
 
         return [
 
-            'title' => ['required', 'string', 'max:255'],
+            'title.*' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique(Category::class)->ignore($this->route()->parameter('category'))],
-            'description' => ['required', 'string', 'max:255'],
-            'caption' => ['required', 'string', 'max:255'],
+            'description.*' => ['required', 'string', 'max:255'],
+            'caption.*' => ['required', 'string', 'max:255'],
             'icon' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'cover_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-            'meta_title' => ['required', 'string', 'max:255'],
-            'meta_description' => ['required', 'string', 'max:255'],
-            'meta_keywords' => ['required', 'string', 'max:255'],
+            'meta_title.*' => ['required', 'string', 'max:255'],
+            'meta_description.*' => ['required', 'string', 'max:255'],
+            'meta_keywords.*' => ['required', 'string', 'max:255'],
         ];
     }
 }
