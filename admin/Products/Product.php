@@ -35,6 +35,7 @@ final class Product extends Model implements HasMedia
      * @var list<string>
      */
     protected $fillable = [
+        'category_id',
         'title',
         'slug',
         'description',

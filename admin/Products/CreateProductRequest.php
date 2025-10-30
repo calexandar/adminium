@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Admin\Categories;
+namespace Admin\Products;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class CreateCategoryRequest extends FormRequest
+final class CreateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,10 @@ final class CreateCategoryRequest extends FormRequest
         return [
 
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Category::class],
+            'slug' => ['required', 'string', 'max:255', 'unique:'.Product::class],
             'description.*' => ['required', 'string', 'max:255'],
             'caption.*' => ['required',  'string', 'max:255'],
+            'disclaimer.*' => ['required',  'string', 'max:255'],
             'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'meta_title.*' => ['required', 'string', 'max:255'],

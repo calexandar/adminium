@@ -27,23 +27,24 @@ final readonly class ProductsController
         return view('products::create', compact('categories'));
     }
 
-    public function store(CreateCategoryRequest $request): RedirectResponse
+    public function store(CreateProductRequest $request): RedirectResponse
     {
-
-        $category = Category::create([
+        $product = Product::create([
+            'category_id' => $request->integer('category_id'),
             'title' => $request->array('title'),
             'slug' => $request->string('slug'),
             'description' => $request->array('description'),
             'caption' => $request->array('caption'),
+            'disclaimer' => $request->array('disclaimer'),
             'meta_title' => $request->array('meta_title'),
             'meta_description' => $request->array('meta_description'),
             'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
-        $category->addMediaFromRequest('icon')->toMediaCollection('icons');
-        $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
+        $product->addMediaFromRequest('icon')->toMediaCollection('icons');
+        $product->addMediaFromRequest('cover_image')->toMediaCollection('products');
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
 
     public function edit(string $category): View
