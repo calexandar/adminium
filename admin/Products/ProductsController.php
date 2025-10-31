@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Admin\Products;
 
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Admin\Categories\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 final readonly class ProductsController
 {
@@ -15,15 +15,15 @@ final readonly class ProductsController
     {
         $products = Product::query()
             ->orderBy('order', 'asc')
-            ->paginate(10);   
+            ->paginate(10);
 
         return view('products::index', compact('products'));
     }
 
     public function create(): View
     {
-        $categories = Category::all(); 
-        
+        $categories = Category::all();
+
         return view('products::create', compact('categories'));
     }
 
@@ -47,41 +47,41 @@ final readonly class ProductsController
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
 
-    public function edit(string $category): View
+    public function edit(string $product): View
     {
-        $category = Category::find($category);
+        $product = Product::find($product);
 
-        return view('categories::edit', compact('category'));
+        return view('products::edit', compact('product'));
     }
 
-    public function update(UpdateCategoryRequest $request, string $category): RedirectResponse
+    public function update(UpdateProductRequest $request, string $product): RedirectResponse
     {
-        $category = Category::find($category);
+        $product = Product::find($product);
 
-        $category->fill($request->validated());
+        $product->fill($request->validated());
 
         if ($request->hasFile('icon')) {
-            $category->clearMediaCollection('icons');
-            $category->addMediaFromRequest('icon')->toMediaCollection('icons');
+            $product->clearMediaCollection('icons');
+            $product->addMediaFromRequest('icon')->toMediaCollection('icons');
         }
 
         if ($request->hasFile('cover_image')) {
-            $category->clearMediaCollection('categories');
-            $category->addMediaFromRequest('cover_image')->toMediaCollection('categories');
+            $product->clearMediaCollection('products');
+            $product->addMediaFromRequest('cover_image')->toMediaCollection('products');
         }
 
-        $category->save();
+        $product->save();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
     }
 
-    public function destroy(string $category): RedirectResponse
+    public function destroy(string $product): RedirectResponse
     {
-        $category = Category::find($category);
+        $product = Product::find($product);
 
-        $category->delete();
+        $product->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully');
     }
 
     public function reorder(Request $request): RedirectResponse
@@ -90,9 +90,9 @@ final readonly class ProductsController
 
         foreach ($order as $item) {
             // Find the item in your database by its ID and update its order
-            Category::where('id', $item['id'])->update(['order' => $item['order']]);
+            Product::where('id', $item['id'])->update(['order' => $item['order']]);
         }
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.products.index');
     }
 }
