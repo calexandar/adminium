@@ -37,6 +37,8 @@ final class UpdateProductRequest extends FormRequest
             'meta_title.*' => ['required', 'string', 'max:255'],
             'meta_description.*' => ['required', 'string', 'max:255'],
             'meta_keywords.*' => ['required', 'string', 'max:255'],
+            'new_product' => ['required', 'boolean'],
+            'published' => ['required', 'boolean'],
         ];
     }
 }
