@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Admin\Products;
 
+use Admin\Categories\Category;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Kra8\Snowflake\HasShortflakePrimary;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class Product extends Model implements HasMedia
 {
@@ -48,4 +50,9 @@ final class Product extends Model implements HasMedia
         'enabled',
         'new_product',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -146,10 +146,10 @@
               <label for="category" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Choose Category</label>
               <div class="mt-2 grid grid-cols-1">
                 <select id="category" name="category_id" autocomplete="category-name" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500">
-                  <option value="">Select a category</option>
-                  {{-- @foreach($categories as $category)
+                  <option value="">{{ $product->category->title ?? 'Select a category' }}</option>
+                  @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
-                  @endforeach --}}
+                  @endforeach
                 </select>
                 <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
                   <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -171,6 +171,7 @@
               <div class="flex items-center gap-x-3">
                 <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
                   <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+                  <input type="hidden" name="new_product" value="0">
                   <input id="new-product" type="checkbox" name="new_product" value="1" aria-labelledby="new-product-label" aria-describedby="new-product-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($product->new_product) ? 'checked' : '' }} />
                 </div>
 
@@ -187,6 +188,7 @@
               <div class="flex items-center gap-x-3">
                 <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
                   <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+                  <input type="hidden" name="published" value="0">
                   <input id="published" type="checkbox" name="published" value="1" aria-labelledby="published-label" aria-describedby="published-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($product->published) ? 'checked' : '' }}/>
                 </div>
 

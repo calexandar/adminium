@@ -50,8 +50,9 @@ final readonly class ProductsController
     public function edit(string $product): View
     {
         $product = Product::find($product);
+        $categories = Category::all();
 
-        return view('products::edit', compact('product'));
+        return view('products::edit', compact('product', 'categories'));
     }
 
     public function update(UpdateProductRequest $request, string $product): RedirectResponse

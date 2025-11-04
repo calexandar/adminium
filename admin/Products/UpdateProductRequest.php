@@ -27,6 +27,7 @@ final class UpdateProductRequest extends FormRequest
 
         return [
 
+            'category_id' => ['required', 'exists:categories,id'],
             'title.*' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', Rule::unique(Product::class)->ignore($this->route()->parameter('product'))],
             'description.*' => ['required', 'string', 'max:255'],
