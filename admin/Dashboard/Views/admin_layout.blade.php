@@ -389,7 +389,7 @@
             <button class="relative flex items-center">
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">Open user menu</span>
-              <img src="{{ auth()->user()->getFirstMediaUrl('avatars', 'thumb') }}" />
+              <img src="{{ auth()->user()->getFirstMediaUrl('avatars', 'thumb') }}" class="h-8 w-8 rounded-full bg-gray-50 dark:bg-gray-800" alt=""/>
               <span class="hidden lg:flex lg:items-center">
                 <span aria-hidden="true" class="ml-4 text-sm/6 font-semibold text-gray-900 dark:text-white">{{ auth()->user()->name }}</span>
                 <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-2 size-5 text-gray-400">

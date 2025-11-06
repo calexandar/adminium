@@ -146,7 +146,7 @@
               <label for="category" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Choose Category</label>
               <div class="mt-2 grid grid-cols-1">
                 <select id="category" name="category_id" autocomplete="category-name" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500">
-                  <option value="">{{ $product->category->title ?? 'Select a category' }}</option>
+                  <option @if ($product->category_id == null) value="" @else value="{{ $product->category_id }}" @endif>{{ $product->category->title ?? 'Select a category' }}</option>
                   @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                   @endforeach
@@ -155,6 +155,9 @@
                   <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                 </svg>
               </div>
+              @if ($errors->has('category_id'))           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('category_id') }}</p>
+              @endif
             </div>
 
             <div class="sm:col-span-3">
@@ -224,8 +227,8 @@
               <label for="cover_image" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Cover image</label>
               <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 dark:border-white/25">
                 <div class="text-center">
-                  @if ($product->getMedia('categories')->count())
-                    <img src="{{ $product->getFirstMediaUrl('categories') }}" alt="" class="mx-auto h-12 w-12 text-gray-300 dark:text-gray-500" />
+                  @if ($product->getMedia('products')->count())
+                    <img src="{{ $product->getFirstMediaUrl('products') }}" alt="" class="mx-auto h-12 w-12 text-gray-300 dark:text-gray-500" />
                   @else
                     <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300 dark:text-gray-600">
                       <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />

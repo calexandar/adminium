@@ -49,6 +49,7 @@ final class Product extends Model implements HasMedia
         'order',
         'enabled',
         'new_product',
+        'published',
     ];
 
     public function category(): BelongsTo

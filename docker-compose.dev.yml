@@ -18,6 +18,8 @@ services:
       args:
         USER_ID: ${USER_ID}
         GROUP_ID: ${GROUP_ID}
+    environment:  
+      AUTORUN_ENABLED: true   
     volumes:
       - .:/var/www/html/
     networks:
@@ -33,7 +35,7 @@ services:
       - "traefik.http.routers.laravel.entrypoints=web"
       - "traefik.http.services.laravel.loadbalancer.server.port=8080"
       - "traefik.http.services.laravel.loadbalancer.server.scheme=http"
-
+ 
   mailpit:
       image: axllent/mailpit
       networks:
