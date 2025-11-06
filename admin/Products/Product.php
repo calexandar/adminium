@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Admin\Categories;
+namespace Admin\Products;
 
+use Admin\Categories\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Kra8\Snowflake\HasShortflakePrimary;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-final class Category extends Model implements HasMedia
+final class Product extends Model implements HasMedia
 {
     use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
@@ -23,6 +25,7 @@ final class Category extends Model implements HasMedia
         'title',
         'description',
         'caption',
+        'disclaimer',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -34,14 +37,23 @@ final class Category extends Model implements HasMedia
      * @var list<string>
      */
     protected $fillable = [
+        'category_id',
         'title',
         'slug',
         'description',
         'caption',
+        'disclaimer',
         'meta_title',
         'meta_description',
         'meta_keywords',
         'order',
         'enabled',
+        'new_product',
+        'published',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

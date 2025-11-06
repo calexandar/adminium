@@ -40,6 +40,7 @@ final class CreateUserRequest extends FormRequest
             ],
             'password' => ['required', 'confirmed',  Rules\Password::defaults()],
             'permissions' => ['required', 'array'],
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:1024'],
         ];
     }
 }
