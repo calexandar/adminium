@@ -42,6 +42,6 @@ final class Category extends Model implements HasMedia
         'meta_description',
         'meta_keywords',
         'order',
-        'enabled',
+        'published',
     ];
 }
