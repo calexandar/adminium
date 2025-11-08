@@ -119,7 +119,7 @@
                 <input id="meta_keywords" type="text" name="meta_keywords[{{ $locale }}]" value="{{ old('meta_keywords.' . $locale, '') }}" autocomplete="given-meta_keywords" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
               @if ($errors->has('meta_keywords.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords.*') }}</p>
+                <p id="meta-kewords-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords.*') }}</p>
               @endif
             </div>
           </div>
@@ -152,7 +152,7 @@
                 <input id="slug" type="text" name="slug"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
               @if ($errors->has('slug'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
+                <p id="slug-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
               @endif
             </div>
 
@@ -160,26 +160,32 @@
               <div class="flex items-center gap-x-3">
                 <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
                   <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
-                  <input id="annual-billing" type="checkbox" name="annual-billing" aria-labelledby="annual-billing-label" aria-describedby="annual-billing-description" class="absolute inset-0 appearance-none focus:outline-hidden" />
+                  <input id="new-product" type="checkbox" name="new_product" aria-labelledby="new-product-label" aria-describedby="new-product-description" class="absolute inset-0 appearance-none focus:outline-hidden" />
                 </div>
 
                 <div class="text-sm">
-                  <label id="annual-billing-label" class="font-medium text-gray-900 dark:text-white">New Product</label>
+                  <label id="new-product-label" class="font-medium text-gray-900 dark:text-white">New Product</label>
                 </div>
               </div>
+                @if ($errors->has('new_product'))           
+                  <p id="new_product-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('new_product') }}</p>
+                @endif
             </div>
 
             <div class="sm:col-span-3">
               <div class="flex items-center gap-x-3">
                 <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
                   <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
-                  <input id="annual-billing" type="checkbox" name="annual-billing" aria-labelledby="annual-billing-label" aria-describedby="annual-billing-description" class="absolute inset-0 appearance-none focus:outline-hidden" />
+                  <input id="published" type="checkbox" name="published" aria-labelledby="published-label" aria-describedby="published-description" class="absolute inset-0 appearance-none focus:outline-hidden" />
                 </div>
 
                 <div class="text-sm">
-                  <label id="annual-billing-label" class="font-medium text-gray-900 dark:text-white">Published</label>
+                  <label id="published-label" class="font-medium text-gray-900 dark:text-white">Published</label>
                 </div>
               </div>
+                @if ($errors->has('published'))           
+                  <p id="published-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('published') }}</p>
+                @endif
             </div>
            
             <div class="col-span-full">
