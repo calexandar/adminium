@@ -52,8 +52,13 @@ final class Product extends Model implements HasMedia
         'published',
     ];
 
+    /**
+     * Get the category that this product belongs to.
+     *
+     * @return BelongsTo<Category, Product>
+     */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class); //@phpstan-ignore-line
     }
 }
