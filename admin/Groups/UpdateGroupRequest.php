@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Groups;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-final class CreateArticleRequest extends FormRequest
+final class UpdateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +26,17 @@ final class CreateArticleRequest extends FormRequest
     {
 
         return [
-            'group_id' => ['required', 'integer'],
+
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Article::class],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Group::class)->ignore($this->route()->parameter('group'))],
             'description.*' => ['required', 'string', 'max:255'],
-            'caption.*' => ['required',  'string', 'max:255'],
-            'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'caption.*' => ['required', 'string', 'max:255'],
+            'icon' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'cover_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'meta_title.*' => ['required', 'string', 'max:255'],
             'meta_description.*' => ['required', 'string', 'max:255'],
             'meta_keywords.*' => ['required', 'string', 'max:255'],
-            'published' => ['boolean'],
+            'published' => ['required', 'boolean'],
         ];
     }
 }

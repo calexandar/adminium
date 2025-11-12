@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Groups;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class CreateArticleRequest extends FormRequest
+final class CreateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ final class CreateArticleRequest extends FormRequest
     {
 
         return [
-            'group_id' => ['required', 'integer'],
+
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Article::class],
+            'slug' => ['required', 'string', 'max:255', 'unique:'.Group::class],
             'description.*' => ['required', 'string', 'max:255'],
             'caption.*' => ['required',  'string', 'max:255'],
             'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],

@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Groups;
 
-use Admin\Groups\Group;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Kra8\Snowflake\HasShortflakePrimary;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-final class Article extends Model implements HasMedia
+final class Group extends Model implements HasMedia
 {
     use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
@@ -36,7 +34,6 @@ final class Article extends Model implements HasMedia
      * @var list<string>
      */
     protected $fillable = [
-        'group_id',
         'title',
         'slug',
         'description',
@@ -47,14 +44,4 @@ final class Article extends Model implements HasMedia
         'order',
         'published',
     ];
-
-    /**
-     * Get the group that this article belongs to.
-     *
-     */ 
-    // @phpstan-ignore-next-line
-    public function group(): BelongsTo
-    {
-        return $this->belongsTo(Group::class);
-    }
 }

@@ -10,4 +10,5 @@ return [
     Admin\Categories\CategoriesServiceProvider::class,
     Admin\Products\ProductsServiceProvider::class,
     Admin\Articles\ArticlesServiceProvider::class,
+    Admin\Groups\GroupsServiceProvider::class,
 ];

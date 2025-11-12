@@ -59,6 +59,6 @@ final class Product extends Model implements HasMedia
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class); //@phpstan-ignore-line
+        return $this->belongsTo(Category::class); // @phpstan-ignore-line
     }
 }

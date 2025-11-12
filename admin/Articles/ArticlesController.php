@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Admin\Articles;
 
+use Admin\Groups\Group;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,13 +22,16 @@ final readonly class ArticlesController
 
     public function create(): View
     {
-        return view('articles::create');
+        $groups = Group::all();
+
+        return view('articles::create', compact('groups'));
     }
 
     public function store(CreateArticleRequest $request): RedirectResponse
     {
 
         $article = Article::create([
+            'group_id' => $request->integer('group_id'),
             'title' => $request->array('title'),
             'slug' => $request->string('slug'),
             'description' => $request->array('description'),

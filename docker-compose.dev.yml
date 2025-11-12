@@ -19,7 +19,7 @@ services:
         USER_ID: ${USER_ID}
         GROUP_ID: ${GROUP_ID}
     environment:  
-      AUTORUN_ENABLED: true   
+      AUTORUN_ENABLED: false   
     volumes:
       - .:/var/www/html/
     networks:
