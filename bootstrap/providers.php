@@ -11,4 +11,5 @@ return [
     Admin\Products\ProductsServiceProvider::class,
     Admin\Articles\ArticlesServiceProvider::class,
     Admin\Groups\GroupsServiceProvider::class,
+    Admin\News\NewsServiceProvider::class,
 ];
