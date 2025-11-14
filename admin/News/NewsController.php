@@ -12,22 +12,22 @@ final readonly class NewsController
 {
     public function index(): View
     {
-        $groups = Group::query()
+        $news = News::query()
             ->orderBy('order', 'asc')
             ->paginate(10);
 
-        return view('groups::index', compact('groups'));
+        return view('news::index', compact('news'));
     }
 
     public function create(): View
     {
-        return view('groups::create');
+        return view('news::create');
     }
 
-    public function store(CreateGroupRequest $request): RedirectResponse
+    public function store(CreateNewsRequest $request): RedirectResponse
     {
 
-        $group = Group::create([
+        $news = News::create([
             'title' => $request->array('title'),
             'slug' => $request->string('slug'),
             'description' => $request->array('description'),
@@ -37,47 +37,47 @@ final readonly class NewsController
             'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
-        $group->addMediaFromRequest('icon')->toMediaCollection('icons');
-        $group->addMediaFromRequest('cover_image')->toMediaCollection('groups');
+        $news->addMediaFromRequest('icon')->toMediaCollection('icons');
+        $news->addMediaFromRequest('cover_image')->toMediaCollection('news');
 
-        return redirect()->route('admin.groups.index')->with('success', 'Group created successfully');
+        return redirect()->route('admin.news.index')->with('success', 'News created successfully');
     }
 
-    public function edit(string $group): View
+    public function edit(string $news): View
     {
-        $group = Group::find($group);
+        $news = News::find($news);
 
-        return view('groups::edit', compact('group'));
+        return view('news::edit', compact('news'));
     }
 
-    public function update(UpdateGroupRequest $request, string $group): RedirectResponse
+    public function update(UpdateNewsRequest $request, string $news): RedirectResponse
     {
-        $group = Group::find($group);
+        $news = News::find($news);
 
-        $group->fill($request->validated());
+        $news->fill($request->validated());
 
         if ($request->hasFile('icon')) {
-            $group->clearMediaCollection('icons');
-            $group->addMediaFromRequest('icon')->toMediaCollection('icons');
+            $news->clearMediaCollection('icons');
+            $news->addMediaFromRequest('icon')->toMediaCollection('icons');
         }
 
         if ($request->hasFile('cover_image')) {
-            $group->clearMediaCollection('groups');
-            $group->addMediaFromRequest('cover_image')->toMediaCollection('groups');
+            $news->clearMediaCollection('news');
+            $news->addMediaFromRequest('cover_image')->toMediaCollection('news');
         }
 
-        $group->save();
+        $news->save();
 
-        return redirect()->route('admin.groups.index')->with('success', 'Group updated successfully');
+        return redirect()->route('admin.news.index')->with('success', 'News updated successfully');
     }
 
-    public function destroy(string $group): RedirectResponse
+    public function destroy(string $news): RedirectResponse
     {
-        $group = Group::find($group);
+        $news = News::find($news);
 
-        $group->delete();
+        $news->delete();
 
-        return redirect()->route('admin.groups.index')->with('success', 'Group deleted successfully');
+        return redirect()->route('admin.news.index')->with('success', 'News deleted successfully');
     }
 
     public function reorder(Request $request): RedirectResponse
@@ -86,9 +86,9 @@ final readonly class NewsController
 
         foreach ($order as $item) {
             // Find the item in your database by its ID and update its order
-            Group::where('id', $item['id'])->update(['order' => $item['order']]);
+            News::where('id', $item['id'])->update(['order' => $item['order']]);
         }
 
-        return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.news.index');
     }
 }
