@@ -37,15 +37,15 @@
     </div>
   </div>
   
-  <form action="{{ route('admin.groups.store') }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="space-y-12">
-      <!-- Category Information translatable -->
+      <!-- News Information translatable -->
       @foreach ($locales as $locale )
         <div x-show="activeTab === '{{ $locale }}'" class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
           <div>
-            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Category Information</h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Category information that is translatable can be used to help you quickly identify and manage your categories.</p>
+            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">News Information</h2>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">News information that is translatable can be used to help you quickly identify and manage your categories.</p>
           </div>
 
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
@@ -64,7 +64,7 @@
               <div class="mt-2">
                 <textarea id="description.{{ $locale }}" name="description[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('description.' . $locale, '') }}</textarea>
               </div>
-              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your category.</p>
+              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your news.</p>
                 @if ($errors->has('description.*'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('description.*') }}</p>
               @endif
