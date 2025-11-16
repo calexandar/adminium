@@ -311,6 +311,22 @@
               </a>
             </li>
             @endcan
+            @can('manage_media')
+            <li>
+              <a href="{{ route('admin.media.index') }}" 
+                  @class([
+                    'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white',
+                    'group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white' => request()->routeIs('admin.media.*')
+                  ])
+              > 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-white">
+                  <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Media
+              </a>
+            </li>
+            @endcan
             <li>
             <button type="button" command="--toggle" commandfor="sub-menu-2" class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 dark:text-current">

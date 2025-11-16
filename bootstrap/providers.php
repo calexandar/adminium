@@ -12,4 +12,5 @@ return [
     Admin\Articles\ArticlesServiceProvider::class,
     Admin\Groups\GroupsServiceProvider::class,
     Admin\News\NewsServiceProvider::class,
+    Admin\Media\MediaServiceProvider::class,
 ];
