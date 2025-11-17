@@ -36,48 +36,45 @@ final readonly class MediaController
             'meta_description' => $request->array('meta_description'),
             'meta_keywords' => $request->array('meta_keywords'),
         ]);
+ $file = $request->file('media_file');
+            $mimeType = $file->getMimeType();
+            //dd($mimeType);
+        $media->addMediaFromRequest('media_file')->toMediaCollection('media');
 
-        $news->addMediaFromRequest('icon')->toMediaCollection('icons');
-        $news->addMediaFromRequest('cover_image')->toMediaCollection('news');
-
-        return redirect()->route('admin.news.index')->with('success', 'News created successfully');
+        return redirect()->route('admin.media.index')->with('success', 'Media created successfully');
     }
 
-    public function edit(string $news): View
+    public function edit(string $media): View
     {
-        $news = News::find($news);
+        $media = Media::find($media);
 
-        return view('news::edit', compact('news'));
+        return view('media::edit', compact('media'));
     }
 
-    public function update(UpdateMediaRequest $request, string $news): RedirectResponse
+    public function update(UpdateMediaRequest $request, string $media): RedirectResponse
     {
-        $news = News::find($news);
+        $media = Media::find($media);
 
-        $news->fill($request->validated());
+        $media->fill($request->validated());
 
-        if ($request->hasFile('icon')) {
-            $news->clearMediaCollection('icons');
-            $news->addMediaFromRequest('icon')->toMediaCollection('icons');
+
+        if ($request->hasFile('media_file')) {
+            $media->clearMediaCollection('media');
+            $media->addMediaFromRequest('media_file')->toMediaCollection('media');
         }
 
-        if ($request->hasFile('cover_image')) {
-            $news->clearMediaCollection('news');
-            $news->addMediaFromRequest('cover_image')->toMediaCollection('news');
-        }
+        $media->save();
 
-        $news->save();
-
-        return redirect()->route('admin.news.index')->with('success', 'News updated successfully');
+        return redirect()->route('admin.media.index')->with('success', 'Media updated successfully');
     }
 
-    public function destroy(string $news): RedirectResponse
+    public function destroy(string $media): RedirectResponse
     {
-        $news = News::find($news);
+        $media = Media::find($media);
 
-        $news->delete();
+        $media->delete();
 
-        return redirect()->route('admin.news.index')->with('success', 'News deleted successfully');
+        return redirect()->route('admin.media.index')->with('success', 'Media deleted successfully');
     }
 
     public function reorder(Request $request): RedirectResponse
@@ -86,9 +83,9 @@ final readonly class MediaController
 
         foreach ($order as $item) {
             // Find the item in your database by its ID and update its order
-            News::where('id', $item['id'])->update(['order' => $item['order']]);
+            Media::where('id', $item['id'])->update(['order' => $item['order']]);
         }
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.media.index');
     }
 }

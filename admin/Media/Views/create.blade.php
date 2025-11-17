@@ -40,12 +40,12 @@
   <form action="{{ route('admin.media.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="space-y-12">
-      <!-- MediaInformation translatable -->
+      <!-- Media Information translatable -->
       @foreach ($locales as $locale )
         <div x-show="activeTab === '{{ $locale }}'" class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
           <div>
             <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Media Information</h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Mediainformation that is translatable can be used to help you quickly identify and manage your categories.</p>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Media information that is translatable can be used to help you quickly identify.</p>
           </div>
 
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
@@ -116,8 +116,8 @@
       @endforeach
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
           <div>
-            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Common Group Information</h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Common Group information that is not translatable can be used to help you quickly identify and manage your categories.</p>
+            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Common Media Information</h2>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Common Media information that is not translatable can be used to help you quickly identify and manage your categories.</p>
           </div>
 
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
@@ -133,8 +133,8 @@
 
             <div class="col-span-full">
               <div class="flex items-center gap-x-3">
-                <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
-                  <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+                <div class="media relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
+                  <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out media-has-checked:translate-x-5"></span>
                   <input type="hidden" name="published" value="0">
                   <input id="published" type="checkbox" name="published" value="1" aria-labelledby="published-label" aria-describedby="published-description" class="absolute inset-0 appearance-none focus:outline-hidden"/>
                 </div>
@@ -149,39 +149,24 @@
             </div>
 
             <div class="col-span-full">
-              <label for="icon" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Icon</label>
-              <div class="mt-2 flex items-center gap-x-3">
-                <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-12 text-gray-300 dark:text-gray-500">
-                  <path d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" fill-rule="evenodd" />
-                </svg>
-                <input id="icon" type="file" name="icon" class="sr-only" />
-                <button id="changeIcon"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
-                <p id="iconName" class="text-gray-500 dark:text-gray-400">No file selected</p>
-              </div>
-              @if ($errors->has('icon'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('icon') }}</p>
-              @endif
-            </div>
-
-            <div class="col-span-full">
-              <label for="cover_image" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Cover image</label>
+              <label for="media_file" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Media File</label>
               <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 dark:border-white/25">
                 <div class="text-center">
                   <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300 dark:text-gray-600">
                     <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
                   </svg>
                   <div class="mt-4 flex text-sm/6 text-gray-600 dark:text-gray-400">
-                    <label for="cover_image" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:focus-within:outline-indigo-500 dark:hover:text-indigo-300">
+                    <label for="media_file" class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:focus-within:outline-indigo-500 dark:hover:text-indigo-300">
                       <span>Upload a file</span>
-                      <input id="cover_image" type="file" name="cover_image" class="sr-only" />
+                      <input id="media_file" type="file" name="media_file" class="sr-only" />
                     </label>
                     <p class="pl-1">or drag and drop</p>
                   </div>
-                  <p class="text-xs/5 text-gray-600 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
+                  <p class="text-xs/5 text-gray-600 dark:text-gray-400">PNG, JPG, GIF, MP4, MOV, AVI up to 20MB</p>
                 </div>
               </div>
-              @if ($errors->has('cover_image'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('cover_image') }}</p>
+              @if ($errors->has('media_file'))           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('media_file') }}</p>
               @endif
             </div>
           </div>
@@ -232,24 +217,3 @@
 });
 </script>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const changeButton = document.getElementById('changeIcon');
-        const photoInput = document.getElementById('icon');
-        const fileNameElement = document.getElementById('iconName');
-
-       changeButton.addEventListener('click', () => {
-        photoInput.click();
-    });
-
-    photoInput.addEventListener('change', () => {
-        const file = photoInput.files[0];
-        if (file) {
-            fileNameElement.textContent = file.name;
-        } else {
-            fileNameElement.textContent = 'No file selected';
-        }
-    });
-});
-</script>
