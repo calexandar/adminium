@@ -54,7 +54,7 @@
                         @if ($category->published)
                           <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset dark:bg-green-900/30 dark:text-green-400 dark:ring-green-500/50">Published</span>
                         @else
-                          <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-pink-600/20 ring-inset dark:bg-pink-900/30 dark:text-pink-400 dark:ring-pink-500/50">Unpublished</span>
+                          <span class="inline-flex items-center rounded-md bg-neutral-50 px-2 py-1 text-xs font-medium text-neutral-700 ring-1 ring-neutral-600/20 ring-inset dark:bg-neutral-900/30 dark:text-neutral-400 dark:ring-neutral-500/50">Draft</span>
                         @endif
                       </td>
                       <td class="py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-6">

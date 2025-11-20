@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Admin\Categories;
+namespace Admin\Groups;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-final class UpdateCategoryRequest extends FormRequest
+final class UpdateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ final class UpdateCategoryRequest extends FormRequest
         return [
 
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', Rule::unique(Category::class)->ignore($this->route()->parameter('category'))],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Group::class)->ignore($this->route()->parameter('group'))],
             'description.*' => ['required', 'string', 'max:255'],
             'caption.*' => ['required', 'string', 'max:255'],
             'icon' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],

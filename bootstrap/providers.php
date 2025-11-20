@@ -9,4 +9,8 @@ return [
     Admin\Users\UsersServiceProvider::class,
     Admin\Categories\CategoriesServiceProvider::class,
     Admin\Products\ProductsServiceProvider::class,
+    Admin\Articles\ArticlesServiceProvider::class,
+    Admin\Groups\GroupsServiceProvider::class,
+    Admin\News\NewsServiceProvider::class,
+    Admin\Media\MediaServiceProvider::class,
 ];
