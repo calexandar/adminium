@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Pages;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-final class CreateArticleRequest extends FormRequest
+final class UpdatePagesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +28,15 @@ final class CreateArticleRequest extends FormRequest
         return [
 
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Article::class],
-            'content.*' => ['required', 'string', 'max:10000'],
-            'short_description.*' => ['required',  'string', 'max:255'],
-            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp,avif', 'max:1024'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Page::class)->ignore($this->route()->parameter('page'))],
+            'content.*' => ['required', 'string', 'max:16777215'],
+            'subtitle.*' => ['required', 'string', 'max:255'],
+            'cover_image' => ['image', 'mimes:jpeg,png,jpg,gif,webp,avif', 'max:1024'],
             'meta_title.*' => ['required', 'string', 'max:60'],
             'meta_description.*' => ['required', 'string', 'max:160'],
-            'published' => ['boolean'],
-            'group_id' => ['required', 'integer'],
-            'author_id' => ['required', 'integer'],
+            'published' => ['required', 'boolean'],
+            'in_menu' => ['required', 'boolean'],
+            'privacy_policy' => ['required', 'boolean'],
         ];
     }
 }

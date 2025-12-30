@@ -327,6 +327,21 @@
               </a>
             </li>
             @endcan
+            @can('manage_pages')
+                <li>
+                  <a href="{{ route('admin.pages.index') }}" 
+                      @class([
+                        'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white',
+                        'group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white' => request()->routeIs('admin.pages.*')
+                      ])
+                  > 
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                    </svg>
+                    Pages
+                  </a>
+                </li>
+                @endcan
             <li>
             <button type="button" command="--toggle" commandfor="sub-menu-2" class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 dark:text-current">
@@ -463,8 +478,8 @@
   </main>
 </div>
 
-  @include('dashboard::flash_messages')
+    @include('dashboard::flash_messages')
 
-  @yield('custom_script')
+    @stack('admin_script')
   </body>
 </html>

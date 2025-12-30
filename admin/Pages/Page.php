@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Pages;
 
-use Admin\Groups\Group;
-use Admin\UserManagment\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Cache;
 use Kra8\Snowflake\HasShortflakePrimary;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-final class Article extends Model implements HasMedia
+final class Page extends Model implements HasMedia
 {
     use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
+
+    protected $table = 'pages';
 
     /**
      * The attributes that are translatable.
@@ -25,7 +25,7 @@ final class Article extends Model implements HasMedia
     public array $translatable = [
         'title',
         'content',
-        'short_description',
+        'subtitle',
         'meta_title',
         'meta_description',
     ];
@@ -36,33 +36,26 @@ final class Article extends Model implements HasMedia
      * @var list<string>
      */
     protected $fillable = [
-        'group_id',
-        'author_id',
         'title',
         'slug',
         'content',
-        'short_description',
+        'subtitle',
         'meta_title',
         'meta_description',
         'order',
         'published',
+        'in_menu',
+        'privacy_policy',
     ];
 
     /**
-     * Get the group that this article belongs to.
+     * Clear the cache automatically.
+     *
+     * @return void
      */
-    // @phpstan-ignore-next-line
-    public function group(): BelongsTo
+    protected static function booted()
     {
-        return $this->belongsTo(Group::class);
-    }
-
-    /**
-     * Get the user that this article belongs to.
-     */
-    // @phpstan-ignore-next-line
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        self::saved(fn () => Cache::forget('nav_pages'));
+        self::deleted(fn () => Cache::forget('nav_pages'));
     }
 }

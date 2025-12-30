@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Admin\Articles;
 
 use Admin\Groups\Group;
+use Admin\UserManagment\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,8 +24,9 @@ final readonly class ArticlesController
     public function create(): View
     {
         $groups = Group::all();
+        $users = User::all();
 
-        return view('articles::create', compact('groups'));
+        return view('articles::create', compact('groups', 'users'));
     }
 
     public function store(CreateArticleRequest $request): RedirectResponse
@@ -32,16 +34,15 @@ final readonly class ArticlesController
 
         $article = Article::create([
             'group_id' => $request->integer('group_id'),
+            'author_id' => $request->integer('author_id'),
             'title' => $request->array('title'),
             'slug' => $request->string('slug'),
-            'description' => $request->array('description'),
-            'caption' => $request->array('caption'),
+            'content' => $request->array('content'),
+            'short_description' => $request->array('short_description'),
             'meta_title' => $request->array('meta_title'),
             'meta_description' => $request->array('meta_description'),
-            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
-        $article->addMediaFromRequest('icon')->toMediaCollection('icons');
         $article->addMediaFromRequest('cover_image')->toMediaCollection('articles');
 
         return redirect()->route('admin.articles.index')->with('success', 'Article created successfully');
@@ -50,8 +51,10 @@ final readonly class ArticlesController
     public function edit(string $article): View
     {
         $article = Article::find($article);
+        $groups = Group::all();
+        $users = User::all();
 
-        return view('articles::edit', compact('article'));
+        return view('articles::edit', compact('article', 'groups', 'users'));
     }
 
     public function update(UpdateArticleRequest $request, string $article): RedirectResponse
@@ -59,11 +62,6 @@ final readonly class ArticlesController
         $article = Article::find($article);
 
         $article->fill($request->validated());
-
-        if ($request->hasFile('icon')) {
-            $article->clearMediaCollection('icons');
-            $article->addMediaFromRequest('icon')->toMediaCollection('icons');
-        }
 
         if ($request->hasFile('cover_image')) {
             $article->clearMediaCollection('articles');

@@ -37,23 +37,23 @@
     </div>
   </div>
 
-  <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('admin.pages.update', $page) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="space-y-12">
-      <!-- Article Information section -->
+      <!-- page Information section -->
       @foreach ($locales as $locale )
         <div x-show="activeTab === '{{ $locale }}'"  class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
           <div>
-            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Article Information</h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Article information can be used to help you quickly identify and manage your articles.</p>
+            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Pages Information</h2>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Pages information can be used to help you quickly identify and manage your categories.</p>
           </div>
 
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <div class="sm:col-span-3">
               <label for="title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Title</label>
               <div class="mt-2">
-                <input id="title" type="text" name="title[{{ $locale }}]" value="{{ $article->getTranslations('title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+                <input id="title" type="text" name="title[{{ $locale }}]" value="{{ $page->getTranslations('title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
               @if ($errors->has('title.*'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title.*') }}</p>
@@ -61,37 +61,37 @@
             </div>
 
             <div class="col-span-full">
-              <label for="content_{{ $locale }}" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Content</label>
+              <label for="subtitle" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Subtitle</label>
               <div class="mt-2">
-                <textarea id="content_{{ $locale }}" name="content[{{ $locale }}]"  rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
-                {{ $article->getTranslations('content')[$locale] }}
+                <textarea id="subtitle" name="subtitle[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
+                {{ $page->getTranslations('subtitle')[$locale] }}
                 </textarea>
               </div>
-              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a content for your article.</p>
-                @if ($errors->has('content.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('content.*') }}</p>
+              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a subtitle for your page.</p>
+              @if ($errors->has('subtitle.*'))           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('subtitle.*') }}</p>
               @endif
             </div>
 
             <div class="col-span-full">
-              <label for="short_description" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Short description</label>
+              <label for="content.{{ $locale }}" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Content</label>
               <div class="mt-2">
-                <textarea id="short_description" name="short_description[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
-                {{ $article->getTranslations('short_description')[$locale] }}
+                <textarea id="content.{{ $locale }}" name="content[{{ $locale }}]"  rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
+                {{ $page->getTranslations('content')[$locale] }}
                 </textarea>
               </div>
-              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a short description that will show on hover.</p>
-              @if ($errors->has('short_description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('short_description.*') }}</p>
+              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a content for your page.</p>
+                @if ($errors->has('content.*'))           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('description.*') }}</p>
               @endif
             </div>
-               
+         
+            <!-- SEO section -->      
             <div class="sm:col-span-4">
               <label for="meta_title" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta title</label>
               <div class="mt-2">
-                <input id="meta_title" type="text" name="meta_title[{{ $locale }}]"  value="{{ $article->getTranslations('meta_title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+                <input id="meta_title" type="text" name="meta_title[{{ $locale }}]"  value="{{ $page->getTranslations('meta_title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta title that will show on homepage. Maximum 60 characters.</p>
               @if ($errors->has('meta_title.*'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_title.*') }}</p>
               @endif
@@ -101,93 +101,41 @@
               <label for="meta_description" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Meta description</label>
               <div class="mt-2">
                 <textarea id="meta_description" name="meta_description[{{ $locale }}]"  rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">
-                  {{ $article->getTranslations('meta_description')[$locale] }}
+                  {{ $page->getTranslations('meta_description')[$locale] }}
                 </textarea>
               </div>
-              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta description that will appear in search results. Maximum 160 characters.</p>
+              <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta descritpion that will appear in search results.</p>
               @if ($errors->has('meta_description.*'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_description.*') }}</p>
               @endif
             </div>
+
           </div>           
         </div>
       @endforeach
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3 dark:border-white/10">
           <div>
-            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Common article Information</h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Common article information that is not translatable can be used to help you quickly identify and manage your articles.</p>
+            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Common page Information</h2>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Common page information that is not translatable can be used to help you quickly identify and manage your categories.</p>
           </div>
 
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <div class="sm:col-span-3">
-              <label for="group" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Choose Group</label>
-              <div class="mt-2 grid grid-cols-1">
-              <select
-                      id="group"
-                      name="group_id"
-                      autocomplete="group-name"
-                      class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500"
-                  >
-                      <option value="">Select a group</option>
-
-                      @foreach ($groups as $group)
-                          <option value="{{ $group->id }}"
-                              {{ old('group_id', $article->group_id) == $group->id ? 'selected' : '' }}>
-                              {{ $group->title }}
-                          </option>
-                      @endforeach
-                  </select>
-                <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
-                  <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-                </svg>
-              </div>
-              @if ($errors->has('group_id'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('group_id') }}</p>
-              @endif
-            </div>
-            <div class="sm:col-span-3">
               <label for="slug" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Slug</label>
               <div class="mt-2">
-                <input id="slug" type="text" name="slug" value="{{ $article->slug }}"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+                <input id="slug" type="text" name="slug" value="{{ $page->slug }}"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
               @if ($errors->has('slug'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
               @endif
             </div>
 
-            <div class="sm:col-span-3">
-              <label for="group" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Choose Author</label>
-              <div class="mt-2 grid grid-cols-1">
-              <select
-                    id="author"
-                    name="author_id"
-                    autocomplete="author-name"
-                    class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:*:bg-gray-800 dark:focus:outline-indigo-500"
-                >
-                    <option value="">Select an author</option>
-
-                    @foreach ($users as $author)
-                        <option value="{{ $author->id }}"
-                            {{ old('author_id', $article->author_id) == $author->id ? 'selected' : '' }}>
-                            {{ $author->name }}
-                        </option>
-                    @endforeach
-                </select>
-                <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
-                  <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-                </svg>
-              </div>
-              @if ($errors->has('author_id'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('author_id') }}</p>
-              @endif
-            </div>
-
-            <div class="sm:col-span-3 flex items-end">
+            <div class="col-span-full">
               <div class="flex items-center gap-x-3">
                 <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
                   <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
                   <input type="hidden" name="published" value="0">
-                  <input id="published" type="checkbox" name="published" value="1" aria-labelledby="published-label" aria-describedby="published-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($article->published) ? 'checked' : '' }}/>
+                  <input id="published" type="checkbox" name="published" value="1" aria-labelledby="published-label" aria-describedby="published-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($page->published) ? 'checked' : '' }}/>
                 </div>
 
                 <div class="text-sm">
@@ -200,11 +148,46 @@
             </div>
 
             <div class="col-span-full">
+              <div class="flex items-center gap-x-3">
+                <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
+                  <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+                  <input type="hidden" name="in_menu" value="0">
+                  <input id="in_menu" type="checkbox" name="in_menu" value="1" aria-labelledby="in_menu-label" aria-describedby="in_menu-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($page->in_menu) ? 'checked' : '' }}/>
+                </div>
+
+                <div class="text-sm">
+                  <label id="in_menu-label" class="font-medium text-gray-900 dark:text-white">In Menu</label>
+                </div>
+              </div>
+                @if ($errors->has('in_menu'))           
+                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('in_menu') }}</p>
+                @endif
+            </div>
+
+            <div class="col-span-full">
+              <div class="flex items-center gap-x-3">
+                <div class="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600 transition-colors duration-200 ease-in-out has-checked:bg-indigo-600 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:outline-indigo-500 dark:has-checked:bg-indigo-500">
+                  <span class="size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5"></span>
+                  <input type="hidden" name="privacy_policy" value="0">
+                  <input id="privacy_policy" type="checkbox" name="privacy_policy" value="1" aria-labelledby="privacy_policy-label" aria-describedby="privacy_policy-description" class="absolute inset-0 appearance-none focus:outline-hidden" {{ ($page->privacy_policy) ? 'checked' : '' }}/>
+                </div>
+
+                <div class="text-sm">
+                  <label id="privacy_policy-label" class="font-medium text-gray-900 dark:text-white">Is Privacy Policy</label>
+                </div>
+              </div>
+                @if ($errors->has('privacy_policy'))           
+                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('privacy_policy') }}</p>
+                @endif
+            </div>
+
+
+            <div class="col-span-full">
               <label for="cover_image" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Cover image</label>
               <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 dark:border-white/25">
                 <div class="text-center">
-                  @if ($article->getMedia('articles')->count())
-                    <img src="{{ $article->getFirstMediaUrl('articles') }}" alt="" class="mx-auto h-12 w-12 text-gray-300 dark:text-gray-500" />
+                  @if ($page->getMedia('pages')->count())
+                    <img src="{{ $page->getFirstMediaUrl('pages') }}" alt="" class="mx-auto h-12 w-12 text-gray-300 dark:text-gray-500" />
                   @else
                     <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300 dark:text-gray-600">
                       <path d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" fill-rule="evenodd" />
@@ -217,15 +200,13 @@
                     </label>
                     <p class="pl-1">or drag and drop</p>
                   </div>
-                  <p class="text-xs/5 text-gray-600 dark:text-gray-400">PNG, JPG, GIF, WEBP, AVIF up to 10MB</p>
+                  <p class="text-xs/5 text-gray-600 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
                 </div>
               </div>
               @if ($errors->has('cover_image'))           
                 <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('cover_image') }}</p>
               @endif
             </div>
-
-
           </div>
       </div>    
     </div>
@@ -241,14 +222,11 @@
 @endsection
 
 @push('admin_script')
-  <!-- CKEditor -->
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-      const locales = @json(config('app.available_locales'));
-      locales.forEach(locale => {
-        CKEDITOR.replace( 'content_'+locale );
-      });
-  });
+  <script>
+    const locales = @json(config('app.available_locales'));
+    locales.forEach(locale => {
+      CKEDITOR.replace( 'content.'+locale );
+    });
   </script>
 
   <script type="text/javascript">
@@ -272,5 +250,5 @@
               .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
       }
   });
-  </script>
+  </script>  
 @endpush
