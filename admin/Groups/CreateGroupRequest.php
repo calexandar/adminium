@@ -31,10 +31,6 @@ final class CreateGroupRequest extends FormRequest
             'description.*' => ['required', 'string', 'max:255'],
             'caption.*' => ['required',  'string', 'max:255'],
             'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
-            'meta_title.*' => ['required', 'string', 'max:255'],
-            'meta_description.*' => ['required', 'string', 'max:255'],
-            'meta_keywords.*' => ['required', 'string', 'max:255'],
             'published' => ['boolean'],
         ];
     }

@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
-            $table->string('caption');
+            $table->longText('content');
+            $table->text('subtitle');
+            $table->string('meta_title');
+            $table->text('meta_description');
             $table->boolean('published')->default(true);
+            $table->boolean('in_menu')->default(true);
+            $table->boolean('privacy_policy')->default(false);
             $table->integer('order')->nullable();
             $table->timestamps();
         });

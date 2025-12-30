@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id');
+            $table->foreignId('author_id')->constrained('users');
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
-            $table->string('caption');
+            $table->longText('content');
+            $table->text('short_description');
             $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->text('meta_description');
             $table->boolean('published')->default(true);
             $table->integer('order')->nullable();
             $table->timestamps();

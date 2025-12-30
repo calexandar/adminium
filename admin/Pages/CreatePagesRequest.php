@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Admin\Articles;
+namespace Admin\Pages;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class CreateArticleRequest extends FormRequest
+final class CreatePagesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +27,15 @@ final class CreateArticleRequest extends FormRequest
         return [
 
             'title.*' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:'.Article::class],
-            'content.*' => ['required', 'string', 'max:10000'],
-            'short_description.*' => ['required',  'string', 'max:255'],
-            'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp,avif', 'max:1024'],
+            'slug' => ['required', 'string', 'max:255', 'unique:'.Page::class],
+            'content.*' => ['required', 'string', 'max:16777215'],
+            'subtitle.*' => ['required',  'string', 'max:255'],
+            'cover_image' => ['required', 'file', 'mimes:jpeg,png,jpg,gif,webp,avif', 'max:1024'],
             'meta_title.*' => ['required', 'string', 'max:60'],
             'meta_description.*' => ['required', 'string', 'max:160'],
             'published' => ['boolean'],
-            'group_id' => ['required', 'integer'],
-            'author_id' => ['required', 'integer'],
+            'in_menu' => ['boolean'],
+            'privacy_policy' => ['boolean'],
         ];
     }
 }

@@ -23,9 +23,6 @@ final class Group extends Model implements HasMedia
         'title',
         'description',
         'caption',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
     ];
 
     /**
@@ -38,9 +35,6 @@ final class Group extends Model implements HasMedia
         'slug',
         'description',
         'caption',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
         'order',
         'published',
     ];

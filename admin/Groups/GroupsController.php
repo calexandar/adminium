@@ -32,13 +32,9 @@ final readonly class GroupsController
             'slug' => $request->string('slug'),
             'description' => $request->array('description'),
             'caption' => $request->array('caption'),
-            'meta_title' => $request->array('meta_title'),
-            'meta_description' => $request->array('meta_description'),
-            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
         $group->addMediaFromRequest('icon')->toMediaCollection('icons');
-        $group->addMediaFromRequest('cover_image')->toMediaCollection('groups');
 
         return redirect()->route('admin.groups.index')->with('success', 'Group created successfully');
     }
@@ -59,11 +55,6 @@ final readonly class GroupsController
         if ($request->hasFile('icon')) {
             $group->clearMediaCollection('icons');
             $group->addMediaFromRequest('icon')->toMediaCollection('icons');
-        }
-
-        if ($request->hasFile('cover_image')) {
-            $group->clearMediaCollection('groups');
-            $group->addMediaFromRequest('cover_image')->toMediaCollection('groups');
         }
 
         $group->save();
