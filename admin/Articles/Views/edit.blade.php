@@ -55,9 +55,9 @@
               <div class="mt-2">
                 <input id="title" type="text" name="title[{{ $locale }}]" value="{{ $article->getTranslations('title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('title.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title.*') }}</p>
-              @endif
+              @error('title.*')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -68,9 +68,9 @@
                 </textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a content for your article.</p>
-                @if ($errors->has('content.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('content.*') }}</p>
-              @endif
+                @error('content.*')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -81,9 +81,9 @@
                 </textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a short description that will show on hover.</p>
-              @if ($errors->has('short_description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('short_description.*') }}</p>
-              @endif
+              @error('short_description.*')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
                
             <div class="sm:col-span-4">
@@ -92,9 +92,9 @@
                 <input id="meta_title" type="text" name="meta_title[{{ $locale }}]"  value="{{ $article->getTranslations('meta_title')[$locale] }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta title that will show on homepage. Maximum 60 characters.</p>
-              @if ($errors->has('meta_title.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_title.*') }}</p>
-              @endif
+            @error('meta_title.*')
+              <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+            @enderror
             </div>
 
             <div class="col-span-full">
@@ -105,9 +105,9 @@
                 </textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta description that will appear in search results. Maximum 160 characters.</p>
-              @if ($errors->has('meta_description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_description.*') }}</p>
-              @endif
+              @error('meta_description.*')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
           </div>           
         </div>
@@ -141,18 +141,18 @@
                   <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                 </svg>
               </div>
-              @if ($errors->has('group_id'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('group_id') }}</p>
-              @endif
+              @error('group_id')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
             <div class="sm:col-span-3">
               <label for="slug" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Slug</label>
               <div class="mt-2">
                 <input id="slug" type="text" name="slug" value="{{ $article->slug }}"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('slug'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
-              @endif
+              @error('slug')
+                <p id="slug-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="sm:col-span-3">
@@ -177,9 +177,9 @@
                   <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                 </svg>
               </div>
-              @if ($errors->has('author_id'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('author_id') }}</p>
-              @endif
+              @error('author_id')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="sm:col-span-3 flex items-end">
@@ -194,9 +194,9 @@
                   <label id="published-label" class="font-medium text-gray-900 dark:text-white">Published</label>
                 </div>
               </div>
-                @if ($errors->has('published'))           
-                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('published') }}</p>
-                @endif
+                  @error('published')
+                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                  @enderror
             </div>
 
             <div class="col-span-full">
@@ -228,9 +228,9 @@
                   </p>
                 </div>
               </div>
-              @if ($errors->has('cover_image'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('cover_image') }}</p>
-              @endif
+              @error('cover_image')
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
 
