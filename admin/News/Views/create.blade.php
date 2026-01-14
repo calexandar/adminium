@@ -54,9 +54,9 @@
               <div class="mt-2">
                 <input id="title" type="text" name="title[{{ $locale }}]" value="{{ old('title.' . $locale, '') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('title.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title.*') }}</p>
-              @endif
+              @error('title.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -65,9 +65,9 @@
                 <textarea id="description.{{ $locale }}" name="description[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('description.' . $locale, '') }}</textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your news.</p>
-                @if ($errors->has('description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('description.*') }}</p>
-              @endif
+                @error('description.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -76,9 +76,9 @@
                 <textarea id="caption" name="caption[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('caption.' . $locale, '') }}</textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a caption that will show on hover.</p>
-              @if ($errors->has('caption.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('caption.*') }}</p>
-              @endif
+              @error('caption.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="sm:col-span-4">
@@ -86,9 +86,9 @@
               <div class="mt-2">
                 <input id="meta_title" type="text" name="meta_title[{{ $locale }}]" value="{{ old('meta_title.' . $locale, '') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('meta_title.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_title.*') }}</p>
-              @endif
+              @error('meta_title.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -97,9 +97,9 @@
                 <textarea id="meta_description" name="meta_description[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('meta_description.' . $locale, '') }}</textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a meta descritpion that will appear in search results.</p>
-              @if ($errors->has('meta_description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_description.*') }}</p>
-              @endif
+              @error('meta_description.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -107,9 +107,9 @@
               <div class="mt-2">
                 <input id="meta_keywords" type="text" name="meta_keywords[{{ $locale }}]" value="{{ old('meta_keywords.' . $locale, '') }}" autocomplete="given-meta_keywords" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('meta_keywords.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('meta_keywords.*') }}</p>
-              @endif
+              @error('meta_keywords.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
           </div>
         </div>
@@ -126,9 +126,9 @@
               <div class="mt-2">
                 <input id="slug" type="text" name="slug"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('slug'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
-              @endif
+              @error('slug')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -143,9 +143,9 @@
                   <label id="published-label" class="font-medium text-gray-900 dark:text-white">Published</label>
                 </div>
               </div>
-                @if ($errors->has('published'))           
-                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('published') }}</p>
-                @endif
+                @error('published')           
+                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="col-span-full">
@@ -158,9 +158,9 @@
                 <button id="changeIcon"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
                 <p id="iconName" class="text-gray-500 dark:text-gray-400">No file selected</p>
               </div>
-              @if ($errors->has('icon'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('icon') }}</p>
-              @endif
+              @error('icon')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
