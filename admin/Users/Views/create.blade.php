@@ -114,7 +114,7 @@
 
 @endsection
 
-
+@push('admin_script')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const changeButton = document.getElementById('changeAvatar');
@@ -135,3 +135,4 @@
     });
 });
 </script>
+@endpush

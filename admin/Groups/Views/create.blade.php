@@ -149,34 +149,14 @@
 @endsection
 
 @push('admin_script')
-  <script>
-    const locales = @json(config('app.available_locales'));
-    locales.forEach(locale => {
-      CKEDITOR.replace( 'description.'+locale );
-    });
-  </script>
-
+  <!-- CKEditor -->
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-      const titleInput = document.getElementById('title');
-      const slugInput = document.getElementById('slug');
-
-      titleInput.addEventListener('input', function() {
-          const title = titleInput.value;
-          const slug = generateSlug(title);
-          slugInput.value = slug;
+      const locales = @json(config('app.available_locales'));
+      locales.forEach(locale => {
+        CKEDITOR.replace( 'description.'+locale );
       });
-
-      function generateSlug(text) {
-          return text
-              .toLowerCase() // Convert to lowercase
-              .trim() // Remove leading/trailing whitespace
-              .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-              .replace(/\s+/g, '-') // Replace spaces with a single hyphen
-              .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
-              .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
-      }
-  });
+    });
   </script>
 
   <script>
@@ -199,7 +179,30 @@
       });
   });
   </script>
-  
+
+   <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('title');
+    const slugInput = document.getElementById('slug');
+
+    titleInput.addEventListener('input', function() {
+        const title = titleInput.value;
+        const slug = generateSlug(title);
+        slugInput.value = slug;
+    });
+
+    function generateSlug(text) {
+        return text
+            .toLowerCase() // Convert to lowercase
+            .trim() // Remove leading/trailing whitespace
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-') // Replace spaces with a single hyphen
+            .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+            .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    }
+});
+  </script>
+
 @endpush
 
 
