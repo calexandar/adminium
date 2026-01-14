@@ -103,23 +103,25 @@
 
 @endsection
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const changeButton = document.getElementById('changeAvatar');
-        const photoInput = document.getElementById('avatar');
-        const fileNameElement = document.getElementById('avatarName');
+@push('admin_script')
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const changeButton = document.getElementById('changeAvatar');
+          const photoInput = document.getElementById('avatar');
+          const fileNameElement = document.getElementById('avatarName');
 
-       changeButton.addEventListener('click', () => {
-        photoInput.click();
-    });
+         changeButton.addEventListener('click', () => {
+          photoInput.click();
+      });
 
-    photoInput.addEventListener('change', () => {
-        const file = photoInput.files[0];
-        if (file) {
-            fileNameElement.textContent = file.name;
-        } else {
-            fileNameElement.textContent = 'No file selected';
-        }
-    });
-});
-</script>
+      photoInput.addEventListener('change', () => {
+          const file = photoInput.files[0];
+          if (file) {
+              fileNameElement.textContent = file.name;
+          } else {
+              fileNameElement.textContent = 'No file selected';
+          }
+      });
+  });
+  </script>
+@endpush

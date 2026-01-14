@@ -157,10 +157,13 @@
 @endsection
 
 @push('admin_script')
-  <script>
-    const locales = @json(config('app.available_locales'));
-    locales.forEach(locale => {
-      CKEDITOR.replace( 'description.'+locale );
+  <!-- CKEditor -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      const locales = @json(config('app.available_locales'));
+      locales.forEach(locale => {
+        CKEDITOR.replace( 'description.'+locale );
+      });
     });
   </script>
 
@@ -184,28 +187,27 @@
               .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
               .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
       }
-  });
+    });
   </script>
 
   <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const changeButton = document.getElementById('changeIcon');
-            const photoInput = document.getElementById('icon');
-            const fileNameElement = document.getElementById('iconName');
+      document.addEventListener('DOMContentLoaded', () => {
+          const changeButton = document.getElementById('changeIcon');
+          const photoInput = document.getElementById('icon');
+          const fileNameElement = document.getElementById('iconName');
 
-          changeButton.addEventListener('click', () => {
-            photoInput.click();
-        });
+        changeButton.addEventListener('click', () => {
+          photoInput.click();
+      });
 
-        photoInput.addEventListener('change', () => {
-            const file = photoInput.files[0];
-            if (file) {
-                fileNameElement.textContent = file.name;
-            } else {
-                fileNameElement.textContent = 'No file selected';
-            }
-        });
-    });
-    </script>
-
+      photoInput.addEventListener('change', () => {
+          const file = photoInput.files[0];
+          if (file) {
+              fileNameElement.textContent = file.name;
+          } else {
+              fileNameElement.textContent = 'No file selected';
+          }
+      });
+  });
+  </script>
 @endpush
