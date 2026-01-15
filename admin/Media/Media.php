@@ -14,8 +14,6 @@ final class Media extends Model implements HasMedia
 {
     use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
-    protected $table = 'medias';
-
     /**
      * The attributes that are translatable.
      *
@@ -29,6 +27,8 @@ final class Media extends Model implements HasMedia
         'meta_description',
         'meta_keywords',
     ];
+
+    protected $table = 'medias';
 
     /**
      * The attributes that are mass assignable.
