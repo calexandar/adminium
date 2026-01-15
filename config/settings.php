@@ -1,23 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /****************************************
     *   HOMEPAGE SETTINGS
     ****************************************/
     'contact_settings' => [
-        "fields" => [ 
-            "phone" => [
-                'type'  => 'text',
-                'name'  => 'phone',
+        'fields' => [
+            'phone' => [
+                'type' => 'text',
+                'name' => 'phone',
                 'label' => 'Phone',
-                'default' => ""
+                'default' => '',
             ],
-            "email" => [
-                "type" => "email",
-                "name" => "email",
-                "label" => "Email",
-                "default" => ""
-            ]
-        ]
-    ]
+            'email' => [
+                'type' => 'email',
+                'name' => 'email',
+                'label' => 'Email',
+                'default' => '',
+            ],
+        ],
+    ],
 ];

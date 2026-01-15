@@ -12,11 +12,10 @@ final readonly class SettingsController
 {
     public function index(string $group): View
     {
-        $fields = config('settings.' . $group . '.fields');
+        $fields = config('settings.'.$group.'.fields');
 
         return view('settings::index', compact('fields', 'group'));
     }
-
 
     public function store(string $group, Request $request): RedirectResponse
     {
@@ -28,5 +27,4 @@ final readonly class SettingsController
 
         return redirect()->route('admin.settings.index', $group)->withSuccess('You have successfully saved settings!');
     }
-
 }

@@ -54,9 +54,9 @@
               <div class="mt-2">
                 <input id="title" type="text" name="title[{{ $locale }}]" value="{{ old('title.' . $locale, '') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('title.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title.*') }}</p>
-              @endif
+              @error('title.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -65,9 +65,9 @@
                 <textarea id="description.{{ $locale }}" name="description[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('description.' . $locale, '') }}</textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a description for your group.</p>
-                @if ($errors->has('description.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('description.*') }}</p>
-              @endif
+                @error('description.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -76,9 +76,9 @@
                 <textarea id="caption" name="caption[{{ $locale }}]" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500">{{ old('caption.' . $locale, '') }}</textarea>
               </div>
               <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">Write a caption that will show on hover.</p>
-              @if ($errors->has('caption.*'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('caption.*') }}</p>
-              @endif
+              @error('caption.*')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
           </div>
@@ -96,9 +96,9 @@
               <div class="mt-2">
                 <input id="slug" type="text" name="slug"  autocomplete="given-slug" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
               </div>
-              @if ($errors->has('slug'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('slug') }}</p>
-              @endif
+              @error('slug')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="col-span-full">
@@ -113,9 +113,9 @@
                   <label id="published-label" class="font-medium text-gray-900 dark:text-white">Published</label>
                 </div>
               </div>
-                @if ($errors->has('published'))           
-                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('published') }}</p>
-                @endif
+                @error('published')           
+                  <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="col-span-full">
@@ -128,9 +128,9 @@
                 <button id="changeIcon"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
                 <p id="iconName" class="text-gray-500 dark:text-gray-400">No file selected</p>
               </div>
-              @if ($errors->has('icon'))           
-                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('icon') }}</p>
-              @endif
+              @error('icon')           
+                <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+              @enderror
             </div>
 
           </div>
@@ -149,34 +149,14 @@
 @endsection
 
 @push('admin_script')
-  <script>
-    const locales = @json(config('app.available_locales'));
-    locales.forEach(locale => {
-      CKEDITOR.replace( 'description.'+locale );
-    });
-  </script>
-
+  <!-- CKEditor -->
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-      const titleInput = document.getElementById('title');
-      const slugInput = document.getElementById('slug');
-
-      titleInput.addEventListener('input', function() {
-          const title = titleInput.value;
-          const slug = generateSlug(title);
-          slugInput.value = slug;
+      const locales = @json(config('app.available_locales'));
+      locales.forEach(locale => {
+        CKEDITOR.replace( 'description.'+locale );
       });
-
-      function generateSlug(text) {
-          return text
-              .toLowerCase() // Convert to lowercase
-              .trim() // Remove leading/trailing whitespace
-              .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-              .replace(/\s+/g, '-') // Replace spaces with a single hyphen
-              .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
-              .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
-      }
-  });
+    });
   </script>
 
   <script>
@@ -199,7 +179,30 @@
       });
   });
   </script>
-  
+
+   <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('title');
+    const slugInput = document.getElementById('slug');
+
+    titleInput.addEventListener('input', function() {
+        const title = titleInput.value;
+        const slug = generateSlug(title);
+        slugInput.value = slug;
+    });
+
+    function generateSlug(text) {
+        return text
+            .toLowerCase() // Convert to lowercase
+            .trim() // Remove leading/trailing whitespace
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-') // Replace spaces with a single hyphen
+            .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+            .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    }
+});
+  </script>
+
 @endpush
 
 

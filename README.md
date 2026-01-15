@@ -96,7 +96,7 @@ My goal is to reduce boilerplate, improve developer experience, and help teams s
 ### 🔗 Find Me Online
 
 - 📝 **Blog:** https://alex-web.mk/articles  
-- 💬 **Contact / Consulting:** https://alex-web.mk/contact  
+- 💬 **Contact / Consulting:** https://alex-web.mk 
 - 💻 **GitHub:** https://github.com/calexandar  
 - 🐥 **Twitter/X:** https://x.com/AlexDeveloperMk  
 

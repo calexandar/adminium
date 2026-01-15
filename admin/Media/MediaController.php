@@ -36,9 +36,9 @@ final readonly class MediaController
             'meta_description' => $request->array('meta_description'),
             'meta_keywords' => $request->array('meta_keywords'),
         ]);
- $file = $request->file('media_file');
-            $mimeType = $file->getMimeType();
-            //dd($mimeType);
+        $file = $request->file('media_file');
+        $mimeType = $file->getMimeType();
+        // dd($mimeType);
         $media->addMediaFromRequest('media_file')->toMediaCollection('media');
 
         return redirect()->route('admin.media.index')->with('success', 'Media created successfully');
@@ -56,7 +56,6 @@ final readonly class MediaController
         $media = Media::find($media);
 
         $media->fill($request->validated());
-
 
         if ($request->hasFile('media_file')) {
             $media->clearMediaCollection('media');

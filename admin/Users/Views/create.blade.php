@@ -17,9 +17,9 @@
           <div class="mt-2">
             <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-          @if ($errors->has('name'))           
-            <p id="name-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('name') }}</p>
-          @endif
+          @error('name')           
+            <p id="name-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="sm:col-span-4">
@@ -27,9 +27,9 @@
           <div class="mt-2">
              <input id="title" type="text" name="title" value="{{ old('title') }}" autocomplete="given-title" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-           @if ($errors->has('title'))           
-            <p id="title-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('title') }}</p>
-          @endif
+           @error('title')           
+            <p id="title-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="sm:col-span-4">
@@ -37,9 +37,9 @@
           <div class="mt-2">
             <input id="email" type="email" name="email" value="{{ old('email') }}"  autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-           @if ($errors->has('email'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('email') }}</p>
-          @endif
+           @error('email')           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="sm:col-span-4">
@@ -47,9 +47,9 @@
           <div class="mt-2">
              <input id="password" type="password" name="password" value="{{ old('password') }}"  autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
           </div>
-           @if ($errors->has('password'))           
-            <p id="password-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('password') }}</p>
-          @endif
+           @error('password')           
+            <p id="password-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="sm:col-span-4">
@@ -69,9 +69,9 @@
             <button id="changeAvatar"  type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20">Change</button>
             <p id="avatarName" class="text-gray-500 dark:text-gray-400">No file selected</p>
           </div>
-          @if ($errors->has('avatar'))           
-            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('avatar') }}</p>
-          @endif
+          @error('avatar')           
+            <p id="email-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+          @enderror
         </div>
 
       </div>
@@ -96,9 +96,9 @@
               </div>
               
             @endforeach
-            @if ($errors->has('permissions'))           
-              <p id="permissions-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $errors->first('permissions') }}</p>
-            @endif
+            @error('permissions')           
+              <p id="permissions-error" class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+            @enderror
           </div>
         </fieldset>
       </div>
@@ -114,7 +114,7 @@
 
 @endsection
 
-
+@push('admin_script')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const changeButton = document.getElementById('changeAvatar');
@@ -135,3 +135,4 @@
     });
 });
 </script>
+@endpush
