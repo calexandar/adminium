@@ -356,7 +356,7 @@
               <ul class="mt-1 px-2">
                 <li>
                   <!-- 44px -->
-                  <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">GraphQL API</a>
+                  <a href="{{ route('admin.settings.index', 'contact_settings') }}" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">GraphQL API</a>
                 </li>
                 <li>
                   <!-- 44px -->

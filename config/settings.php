@@ -20,6 +20,12 @@ return [
                 'label' => 'Email',
                 'default' => '',
             ],
+            'menu-color' => [
+                'type'  => 'colorpicker',
+                'name'  => 'menu-color',
+                'label' => 'Menu text color',
+                'default' => '#ed017e'
+            ],
         ],
     ],
 ];
