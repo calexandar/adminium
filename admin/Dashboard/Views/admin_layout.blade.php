@@ -328,75 +328,89 @@
             </li>
             @endcan
             @can('manage_pages')
-                <li>
-                  <a href="{{ route('admin.pages.index') }}" 
-                      @class([
-                        'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white',
-                        'group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white' => request()->routeIs('admin.pages.*')
-                      ])
-                  > 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
-                    </svg>
-                    Pages
-                  </a>
-                </li>
-                @endcan
-            <li>
-            <button type="button" command="--toggle" commandfor="sub-menu-2" class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 dark:text-current">
-                <path d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              Projects
-              <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-auto size-5 shrink-0 not-in-aria-expanded:text-gray-400 in-aria-expanded:rotate-90 in-aria-expanded:text-gray-500 dark:in-aria-expanded:text-gray-400">
-                <path d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-              </svg>
-            </button>
-            <el-disclosure id="sub-menu-2" hidden class="contents">
-              <ul class="mt-1 px-2">
-                <li>
-                  <!-- 44px -->
-                  <a href="{{ route('admin.settings.index', 'contact_settings') }}" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">GraphQL API</a>
-                </li>
-                <li>
-                  <!-- 44px -->
-                  <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">iOS App</a>
-                </li>
-                <li>
-                  <!-- 44px -->
-                  <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Android App</a>
-                </li>
-                <li>
-                  <!-- 44px -->
-                  <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">New Customer Portal</a>
-                </li>
-              </ul>
-            </el-disclosure>
-          </li>
+              <li>
+                <a href="{{ route('admin.pages.index') }}" 
+                    @class([
+                      'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white',
+                      'group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white' => request()->routeIs('admin.pages.*')
+                    ])
+                > 
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                  </svg>
+                  Pages
+                </a>
+              </li>
+            @endcan
           </ul>
         </li>
         <li>
-          <div class="text-xs/6 font-semibold text-gray-400">Your teams</div>
+          <div class="text-xs/6 font-semibold text-gray-400">Settings</div>
           <ul role="list" class="-mx-2 mt-2 space-y-1">
-            <li>
-              <!-- Current: "bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white", Default: "text-gray-700 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5" -->
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
-                <span class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600 dark:border-white/10 dark:bg-white/5 dark:group-hover:border-white/20 dark:group-hover:text-white">H</span>
-                <span class="truncate">Heroicons</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
-                <span class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600 dark:border-white/10 dark:bg-white/5 dark:group-hover:border-white/20 dark:group-hover:text-white">T</span>
-                <span class="truncate">Tailwind Labs</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
-                <span class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600 dark:border-white/10 dark:bg-white/5 dark:group-hover:border-white/20 dark:group-hover:text-white">W</span>
-                <span class="truncate">Workcation</span>
-              </a>
-            </li>
+            @can('manage_settings')
+              <li>
+                <button type="button" command="--toggle" commandfor="homepage-sub-menu" class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 dark:text-current">
+                    <path d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Homepage
+                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-auto size-5 shrink-0 not-in-aria-expanded:text-gray-400 in-aria-expanded:rotate-90 in-aria-expanded:text-gray-500 dark:in-aria-expanded:text-gray-400">
+                    <path d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                  </svg>
+                </button>
+                <el-disclosure id="homepage-sub-menu" hidden class="contents">
+                  <ul class="mt-1 px-2">
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">About</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">News</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Categories</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Articles</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Instagram</a>
+                    </li>
+                  </ul>
+                </el-disclosure>
+              </li>
+            @endcan
+            @can('manage_settings')
+              <li>
+                <button type="button" command="--toggle" commandfor="others-sub-menu" class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 dark:text-current">
+                    <path d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Others
+                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-auto size-5 shrink-0 not-in-aria-expanded:text-gray-400 in-aria-expanded:rotate-90 in-aria-expanded:text-gray-500 dark:in-aria-expanded:text-gray-400">
+                    <path d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                  </svg>
+                </button>
+                <el-disclosure id="others-sub-menu" hidden class="contents">
+                  <ul class="mt-1 px-2">
+                    <li>
+                      <a href="" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Menu</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Email</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.settings.index', 'contact_settings') }}" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Contact</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Cookie</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block rounded-md py-2 pr-2 pl-9 text-sm/6 text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">Search</a>
+                    </li>
+                  </ul>
+                </el-disclosure>
+              </li>
+            @endcan
           </ul>
         </li>
         <li class="mt-auto">

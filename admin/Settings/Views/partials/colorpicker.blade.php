@@ -4,7 +4,6 @@
     $size = $field['size'] ?? 'medium';
     $showAlpha = $field['show_alpha'] ?? false;
     $presets = $field['presets'] ?? [];
-    $copyToClipboard = false;
     
     $sizeClasses = [
         'small' => 'w-8 h-8',
