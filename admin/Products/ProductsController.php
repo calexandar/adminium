@@ -38,7 +38,6 @@ final readonly class ProductsController
             'disclaimer' => $request->array('disclaimer'),
             'meta_title' => $request->array('meta_title'),
             'meta_description' => $request->array('meta_description'),
-            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
         $product->addMediaFromRequest('icon')->toMediaCollection('icons');

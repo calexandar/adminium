@@ -28,7 +28,6 @@ final class Product extends Model implements HasMedia
         'disclaimer',
         'meta_title',
         'meta_description',
-        'meta_keywords',
     ];
 
     /**
@@ -45,7 +44,6 @@ final class Product extends Model implements HasMedia
         'disclaimer',
         'meta_title',
         'meta_description',
-        'meta_keywords',
         'order',
         'enabled',
         'new_product',

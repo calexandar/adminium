@@ -34,7 +34,7 @@ final class CreateNewsRequest extends FormRequest
             'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
             'meta_title.*' => ['required', 'string', 'max:255'],
             'meta_description.*' => ['required', 'string', 'max:255'],
-            'meta_keywords.*' => ['required', 'string', 'max:255'],
+            
             'published' => ['boolean'],
         ];
     }

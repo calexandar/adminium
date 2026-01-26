@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('disclaimer');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->string('meta_keywords');
             $table->boolean('published')->default(true);
             $table->boolean('new_product')->default(true);
             $table->integer('order')->nullable();

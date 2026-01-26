@@ -34,7 +34,6 @@ final readonly class NewsController
             'caption' => $request->array('caption'),
             'meta_title' => $request->array('meta_title'),
             'meta_description' => $request->array('meta_description'),
-            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
         $news->addMediaFromRequest('icon')->toMediaCollection('icons');
