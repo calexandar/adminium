@@ -3,31 +3,6 @@
 declare(strict_types=1);
 
 return [
-    /****************************************
-     *   CONTACT SETTINGS
-     ****************************************/
-    'contact_settings' => [
-        'fields' => [
-            'phone' => [
-                'type' => 'text',
-                'name' => 'phone',
-                'label' => 'Phone',
-                'default' => '',
-            ],
-            'email' => [
-                'type' => 'email',
-                'name' => 'email',
-                'label' => 'Email',
-                'default' => '',
-            ],
-            'menu-color' => [
-                'type'  => 'colorpicker',
-                'name'  => 'menu-color',
-                'label' => 'Menu text color',
-                'default' => '#ed017e'
-            ],
-        ],
-    ],
 
     /****************************************
      *   THEME SETTINGS
@@ -349,4 +324,31 @@ return [
             ],
         ],
     ],
+
+    /****************************************
+     *   CONTACT SETTINGS
+     ****************************************/
+    'contact_settings' => [
+        'fields' => [
+            'address' => [
+                'type' => 'text',
+                'name' => 'address',
+                'label' => 'Address',
+                'default' => '',
+            ],
+            'phone' => [
+                'type' => 'text',
+                'name' => 'phone',
+                'label' => 'Phone',
+                'default' => '',
+            ],
+            'email' => [
+                'type' => 'text',
+                'name' => 'email',
+                'label' => 'Email',
+                'default' => '',
+            ],
+        ],
+    ],
+
 ];
