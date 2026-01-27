@@ -34,7 +34,6 @@ final readonly class CategoriesController
             'caption' => $request->array('caption'),
             'meta_title' => $request->array('meta_title'),
             'meta_description' => $request->array('meta_description'),
-            'meta_keywords' => $request->array('meta_keywords'),
         ]);
 
         $category->addMediaFromRequest('icon')->toMediaCollection('icons');

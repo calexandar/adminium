@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('caption');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->string('meta_keywords');
             $table->boolean('published')->default(true);
             $table->integer('order')->nullable();
             $table->timestamps();

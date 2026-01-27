@@ -25,7 +25,6 @@ final class Media extends Model implements HasMedia
         'caption',
         'meta_title',
         'meta_description',
-        'meta_keywords',
     ];
 
     protected $table = 'medias';
@@ -42,7 +41,6 @@ final class Media extends Model implements HasMedia
         'caption',
         'meta_title',
         'meta_description',
-        'meta_keywords',
         'order',
         'published',
     ];

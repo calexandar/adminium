@@ -25,7 +25,6 @@ final class Category extends Model implements HasMedia
         'caption',
         'meta_title',
         'meta_description',
-        'meta_keywords',
     ];
 
     /**
@@ -40,7 +39,6 @@ final class Category extends Model implements HasMedia
         'caption',
         'meta_title',
         'meta_description',
-        'meta_keywords',
         'order',
         'published',
     ];
