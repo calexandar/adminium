@@ -11,14 +11,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/calexandar/adminium.git">
-    <img src="https://img.shields.io/badge/Git-Clone-blue.svg" alt="Git Clone">
-  </a>
+  <img src="https://badgen.net/github/forks/calexandar/adminium" alt="Forks">
   <a href="LICENSE.md">
     <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
-  </a>
-  <a href="https://github.com/calexandar/adminium/blob/main/LICENSE">
-    <img src="https://badgen.net/github/license/calexandar/adminium" alt="License">
   </a>
   <a href="https://github.com/calexandar/adminium/stargazers">
     <img src="https://badgen.net/github/stars/calexandar/adminium" alt="Stars">
