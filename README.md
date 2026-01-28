@@ -11,8 +11,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/calexandar/adminium/blob/main/LICENSE">
-    <img src="https://badgen.net/github/license/calexandar/adminium" alt="License">
+  <img src="https://badgen.net/github/forks/calexandar/adminium" alt="Forks">
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
   </a>
   <a href="https://github.com/calexandar/adminium/stargazers">
     <img src="https://badgen.net/github/stars/calexandar/adminium" alt="Stars">
@@ -101,3 +102,9 @@ My goal is to reduce boilerplate, improve developer experience, and help teams s
 - 🐥 **Twitter/X:** https://x.com/AlexDeveloperMk  
 
 If this project helps you, consider ⭐ starring the repository or contributing back to the community ❤️
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
