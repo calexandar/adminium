@@ -25,8 +25,8 @@
 <div class="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
   <div class="w-full max-w-sm space-y-10">
     <div>
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
+      <img src="{{ asset('storage/images/adminium-logo.png') }}" alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
+      <img src="{{ asset('storage/images/adminium-logo.png') }}" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
       <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">Sign in to your account</h2>
     </div>
     <form action="{{ route('admin.sign-in') }}" method="POST" class="space-y-6">

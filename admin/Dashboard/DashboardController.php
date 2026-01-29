@@ -11,7 +11,7 @@ use Admin\Articles\Article;
 use Admin\Products\Product;
 use Admin\UserManagment\User;
 use Admin\Categories\Category;
-
+use Admin\News\News;
 
 final readonly class DashboardController
 {
@@ -23,6 +23,7 @@ final readonly class DashboardController
             'productsCount' => Product::count(),
             'usersCount' => User::count(),
             'categoriesCount' => Category::count(),
+            'newsCount' => News::count(),
 
             'lastPublishedArticle' => Article::whereNotNull('published')
                 ->orderBy('updated_at', 'desc')
