@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://alex-web.mk/showcase/adminium/">
-    <img src="https://raw.githubusercontent.com/calexandar/adminium/main/header.png" width="1280" alt="Adminium – Laravel Admin Panel Starter Kit">
+    <img src="https://raw.githubusercontent.com/calexandar/adminium/main/adminium-dashboard.png" width="1280" alt="Adminium – Laravel Admin Panel Starter Kit">
   </a>
 </p>
 
