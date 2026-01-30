@@ -73,7 +73,7 @@ serversideup/php:8.4-fpm-nginx
 
 <div align="center">
   <a href="https://x.com/AlexDeveloperMk">
-    <img src="https://alex-web.mk/assets/image/removed_bg.webp" width="150" alt="Aleksandar Cvetanovski">
+    <img src="https://alex-web.mk/storage/images/removed_bg.webp" width="150" alt="Aleksandar Cvetanovski">
   </a>
 </div>
 
