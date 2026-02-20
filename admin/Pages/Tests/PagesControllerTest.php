@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Admin\Pages\Test;
+namespace Admin\Pages\Tests;
 
 use Admin\Pages\Page;
 use Admin\UserManagment\User;
