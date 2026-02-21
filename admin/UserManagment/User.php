@@ -20,7 +20,7 @@ final class User extends Authenticatable implements HasMedia
     use HasFactory, HasRoles, HasShortflakePrimary, InteractsWithMedia, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Get the attributes that should be cast.
      *
      * @var list<string>
      */
