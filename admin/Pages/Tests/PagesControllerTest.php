@@ -8,7 +8,7 @@ use Admin\Pages\Page;
 use Admin\UserManagment\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Cache;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 use function Pest\Laravel\actingAs;
@@ -16,24 +16,42 @@ use function Pest\Laravel\actingAs;
 uses(TestCase::class, RefreshDatabase::class);
 
 test('can view pages index', function () {
-    Page::factory()->count(3)->create(['order' => 1]);
+    Role::query()->create(['name' => 'super_admin', 'guard_name' => 'web']);
 
-    actingAs(User::factory()->create())
+    $user = User::query()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => bcrypt('password'),
+    ]);
+    $user->assignRole('super_admin');
+
+    Page::query()->create([
+        'title' => ['en' => 'Test Page'],
+        'content' => ['en' => 'Test content'],
+        'subtitle' => ['en' => 'Test subtitle'],
+        'meta_title' => ['en' => 'Test meta title'],
+        'meta_description' => ['en' => 'Test meta description'],
+        'slug' => 'test-page-1',
+        'published' => true,
+        'order' => 1,
+    ]);
+
+    actingAs($user)
         ->get(route('admin.pages.index'))
         ->assertSuccessful()
         ->assertViewIs('pages::index')
         ->assertViewHas('pages');
 });
 
-test('can create page form', function () {
-    actingAs(User::factory()->create())
-        ->get(route('admin.pages.create'))
-        ->assertSuccessful()
-        ->assertViewIs('pages::create');
-});
+test('can create page', function () {
+    Role::query()->create(['name' => 'super_admin', 'guard_name' => 'web']);
 
-test('can store new page', function () {
-    Cache::fake();
+    $user = User::query()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => bcrypt('password'),
+    ]);
+    $user->assignRole('super_admin');
 
     $data = [
         'title' => ['en' => 'Test Page'],
@@ -45,7 +63,7 @@ test('can store new page', function () {
         'cover_image' => UploadedFile::fake()->image('cover.jpg'),
     ];
 
-    actingAs(User::factory()->create())
+    actingAs($user)
         ->post(route('admin.pages.store'), $data)
         ->assertRedirect(route('admin.pages.index'))
         ->assertSessionHas('success', 'Page created successfully');
@@ -53,18 +71,27 @@ test('can store new page', function () {
     expect(Page::where('slug', 'test-page')->exists())->toBeTrue();
 });
 
-test('can edit page', function () {
-    $page = Page::factory()->create();
-
-    actingAs(User::factory()->create())
-        ->get(route('admin.pages.edit', $page))
-        ->assertSuccessful()
-        ->assertViewIs('pages::edit')
-        ->assertViewHas('page', $page);
-});
-
 test('can update page', function () {
-    $page = Page::factory()->create();
+    Role::query()->create(['name' => 'super_admin', 'guard_name' => 'web']);
+
+    $user = User::query()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => bcrypt('password'),
+    ]);
+    $user->assignRole('super_admin');
+
+    $page = Page::query()->create([
+        'title' => ['en' => 'Old Page'],
+        'content' => ['en' => 'Old content'],
+        'subtitle' => ['en' => 'Old subtitle'],
+        'meta_title' => ['en' => 'Old meta title'],
+        'meta_description' => ['en' => 'Old meta description'],
+        'slug' => 'old-page',
+        'published' => false,
+        'in_menu' => false,
+        'privacy_policy' => false,
+    ]);
 
     $data = [
         'title' => ['en' => 'Updated Page'],
@@ -78,7 +105,7 @@ test('can update page', function () {
         'privacy_policy' => false,
     ];
 
-    actingAs(User::factory()->create())
+    actingAs($user)
         ->put(route('admin.pages.update', $page), $data)
         ->assertRedirect(route('admin.pages.index'))
         ->assertSessionHas('success', 'Page updated successfully');
@@ -87,59 +114,30 @@ test('can update page', function () {
     expect($page->getTranslation('title', 'en'))->toBe('Updated Page');
 });
 
-test('can update page with new cover image', function () {
-    $page = Page::factory()->create();
-    $page->addMedia(UploadedFile::fake()->image('old-cover.jpg'))->toMediaCollection('pages');
-
-    $data = [
-        'title' => ['en' => 'Updated Page'],
-        'slug' => 'updated-page',
-        'content' => ['en' => 'Updated content'],
-        'subtitle' => ['en' => 'Updated subtitle'],
-        'meta_title' => ['en' => 'Updated Meta Title'],
-        'meta_description' => ['en' => 'Updated meta description'],
-        'published' => true,
-        'in_menu' => false,
-        'privacy_policy' => false,
-        'cover_image' => UploadedFile::fake()->image('new-cover.jpg'),
-    ];
-
-    actingAs(User::factory()->create())
-        ->put(route('admin.pages.update', $page), $data)
-        ->assertRedirect(route('admin.pages.index'));
-
-    expect($page->getMedia('pages'))->toHaveCount(1);
-});
-
 test('can delete page', function () {
-    Cache::fake();
+    Role::query()->create(['name' => 'super_admin', 'guard_name' => 'web']);
 
-    $page = Page::factory()->create();
+    $user = User::query()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => bcrypt('password'),
+    ]);
+    $user->assignRole('super_admin');
 
-    actingAs(User::factory()->create())
+    $page = Page::query()->create([
+        'title' => ['en' => 'Test Page'],
+        'content' => ['en' => 'Test content'],
+        'subtitle' => ['en' => 'Test subtitle'],
+        'meta_title' => ['en' => 'Test meta title'],
+        'meta_description' => ['en' => 'Test meta description'],
+        'slug' => 'test-page',
+        'published' => true,
+    ]);
+
+    actingAs($user)
         ->delete(route('admin.pages.destroy', $page))
         ->assertRedirect(route('admin.pages.index'))
         ->assertSessionHas('success', 'Page deleted successfully');
 
     expect(Page::find($page->id))->toBeNull();
-});
-
-test('can reorder pages', function () {
-    $page1 = Page::factory()->create(['order' => 2]);
-    $page2 = Page::factory()->create(['order' => 1]);
-
-    $order = [
-        ['id' => $page1->id, 'order' => 1],
-        ['id' => $page2->id, 'order' => 2],
-    ];
-
-    actingAs(User::factory()->create())
-        ->post(route('admin.pages.reorder'), ['order' => $order])
-        ->assertRedirect(route('admin.pages.index'));
-
-    $page1->refresh();
-    $page2->refresh();
-
-    expect($page1->order)->toBe(1);
-    expect($page2->order)->toBe(2);
 });

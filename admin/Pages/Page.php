@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Admin\Pages;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Kra8\Snowflake\HasShortflakePrimary;
@@ -13,7 +14,7 @@ use Spatie\Translatable\HasTranslations;
 
 final class Page extends Model implements HasMedia
 {
-    use HasShortflakePrimary, HasTranslations, InteractsWithMedia;
+    use HasFactory, HasShortflakePrimary, HasTranslations, InteractsWithMedia;
 
     /**
      * The attributes that are translatable.
@@ -47,6 +48,11 @@ final class Page extends Model implements HasMedia
         'in_menu',
         'privacy_policy',
     ];
+
+    protected static function newFactory(): \Illuminate\Database\Eloquent\Factories\Factory
+    {
+        return \Database\Factories\PageFactory::new();
+    }
 
     /**
      * Clear the cache automatically.
