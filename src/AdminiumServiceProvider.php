@@ -7,8 +7,10 @@ namespace Calexandar\Adminium;
 use Calexandar\Adminium\Articles\ArticlesServiceProvider;
 use Calexandar\Adminium\Authentication\AdminAuthenticationServiceProvider;
 use Calexandar\Adminium\Categories\CategoriesServiceProvider;
+use Calexandar\Adminium\Console\InstallCommand;
 use Calexandar\Adminium\Dashboard\DashboardServiceProvider;
 use Calexandar\Adminium\Groups\GroupsServiceProvider;
+use Calexandar\Adminium\Http\Middleware\Authenticate;
 use Calexandar\Adminium\Media\MediaServiceProvider;
 use Calexandar\Adminium\News\NewsServiceProvider;
 use Calexandar\Adminium\Pages\PagesServiceProvider;
@@ -41,6 +43,8 @@ final class AdminiumServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/adminium.php', 'adminium');
 
+        $this->configureAuth();
+
         foreach (self::MODULES as $module => $provider) {
             if ((bool) config('adminium.modules.'.$module, true)) {
                 $this->app->register($provider);
@@ -52,9 +56,15 @@ final class AdminiumServiceProvider extends ServiceProvider
     {
         $this->registerSuperAdminGate();
 
+        $this->app['router']->aliasMiddleware('adminium.auth', Authenticate::class);
+
         if (! $this->app->runningInConsole()) {
             return;
         }
+
+        $this->commands([
+            InstallCommand::class,
+        ]);
 
         $this->publishes([
             __DIR__.'/../config/adminium.php' => config_path('adminium.php'),
@@ -64,6 +74,20 @@ final class AdminiumServiceProvider extends ServiceProvider
             __DIR__.'/../resources/css' => resource_path('css/vendor/adminium'),
             __DIR__.'/../resources/js' => resource_path('js/vendor/adminium'),
         ], 'adminium-assets');
+    }
+
+    private function configureAuth(): void
+    {
+        $model = config('adminium.user_model');
+
+        if (! is_string($model) || ! class_exists($model)) {
+            return;
+        }
+
+        config([
+            'auth.providers.users.model' => $model,
+            'auth.guards.web.provider' => 'users',
+        ]);
     }
 
     private function registerSuperAdminGate(): void

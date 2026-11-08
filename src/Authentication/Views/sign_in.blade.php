@@ -25,8 +25,12 @@
 <div class="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
   <div class="w-full max-w-sm space-y-10">
     <div>
-      <img src="{{ asset(config('adminium.logo')) }}" alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
-      <img src="{{ asset(config('adminium.logo')) }}" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
+      @if ($adminiumLogo = adminium_logo())
+        <img src="{{ $adminiumLogo }}" alt="Your Company" class="mx-auto h-10 w-auto dark:hidden" />
+        <img src="{{ $adminiumLogo }}" alt="Your Company" class="mx-auto h-10 w-auto not-dark:hidden" />
+      @else
+        <span class="block text-center text-2xl font-semibold text-gray-900 dark:text-white">Adminium</span>
+      @endif
     </div>
     <form action="{{ route('admin.sign-in') }}" method="POST" class="space-y-6">
         @csrf

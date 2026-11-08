@@ -12,5 +12,5 @@ Route::post('/sign-in', SignInAdminController::class)
 Route::get('/sign-in', SignInAdminViewController::class)
     ->name('admin.sign-in.view');
 
-Route::post('/logout', LogOutController::class)->middleware('auth')
+Route::post('/logout', LogOutController::class)->middleware('adminium.auth')
     ->name('admin.logout');

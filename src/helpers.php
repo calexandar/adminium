@@ -25,3 +25,19 @@ if (! function_exists('adminium_settings')) {
         return $store->get($key, $default);
     }
 }
+
+if (! function_exists('adminium_logo')) {
+    /**
+     * Resolve the public URL for the configured Adminium logo.
+     */
+    function adminium_logo(): ?string
+    {
+        $logo = config('adminium.logo');
+
+        if (! is_string($logo) || $logo === '') {
+            return null;
+        }
+
+        return file_exists(public_path($logo)) ? asset($logo) : null;
+    }
+}

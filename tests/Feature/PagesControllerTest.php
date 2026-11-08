@@ -6,14 +6,10 @@ namespace Calexandar\Adminium\Tests\Feature;
 
 use Calexandar\Adminium\Pages\Page;
 use Calexandar\Adminium\UserManagment\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Spatie\Permission\Models\Role;
-use Tests\TestCase;
 
 use function Pest\Laravel\actingAs;
-
-uses(TestCase::class, RefreshDatabase::class);
 
 test('can view pages index', function () {
     Role::query()->create(['name' => 'super_admin', 'guard_name' => 'web']);

@@ -15,7 +15,7 @@ final class RouteServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->routes(function (): void {
-            Route::middleware(['web', 'auth'])
+            Route::middleware(['web', 'adminium.auth'])
                 ->prefix(config('adminium.route_prefix', 'admin'))
                 ->group(__DIR__.'/dashboard-routes.php');
         });
