@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89a68df8300f5cbe57996b8fd8bcaa62",
+    "content-hash": "63ee45dad9affee9f428285b55389b44",
     "packages": [
         {
             "name": "brick/math",
@@ -65,6 +65,63 @@
                 }
             ],
             "time": "2026-02-10T14:33:43+00:00"
+        },
+        {
+            "name": "calexandar/adminium",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/adminium",
+                "reference": "7d874cb9ad9fe7ce4792ceae5306c2a76dbd9b28"
+            },
+            "require": {
+                "kra8/laravel-snowflake": "^2.4",
+                "laravel/framework": "^12.0",
+                "php": "^8.4",
+                "qcod/laravel-settings": "^1.2",
+                "spatie/laravel-medialibrary": "^11.15",
+                "spatie/laravel-permission": "^6.21",
+                "spatie/laravel-translatable": "^6.11"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^4.1",
+                "pestphp/pest-plugin-laravel": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Calexandar\\Adminium\\AdminiumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Calexandar\\Adminium\\": "src/",
+                    "Calexandar\\Adminium\\Database\\Factories\\": "database/factories/",
+                    "Calexandar\\Adminium\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Calexandar\\Adminium\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A modular Laravel admin panel and CMS built with Tailwind CSS.",
+            "keywords": [
+                "admin",
+                "cms",
+                "laravel",
+                "panel"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "carbonphp/carbon-doctrine-types",

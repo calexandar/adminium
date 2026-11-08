@@ -6,7 +6,8 @@ parameters:
 
     paths:
         - app/
-        - admin/
+        - packages/adminium/src
+        - packages/adminium/database
 
     level: 7
 
