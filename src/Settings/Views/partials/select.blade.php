@@ -6,7 +6,7 @@
                 <option value="">{{ $field['placeholder'] }}</option>
             @endif
             @foreach($field['options'] as $value => $label)
-                <option value="{{ $value }}" {{ settings()->group($group)->get($field['name'], $field['default']) == $value ? 'selected' : '' }}>{{ $label }}</option>
+                <option value="{{ $value }}" {{ adminium_settings()->group($group)->get($field['name'], $field['default']) == $value ? 'selected' : '' }}>{{ $label }}</option>
             @endforeach
         </select>
         <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
