@@ -64,7 +64,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', Admin\UserManagment\User::class),
+            'model' => env('AUTH_MODEL', Calexandar\Adminium\UserManagment\User::class),
         ],
 
         // 'users' => [
