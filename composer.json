@@ -21,9 +21,8 @@
         "php": "^8.4",
         "calexandar/adminium": "^1.0",
         "kra8/laravel-snowflake": "^2.4",
-        "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1",
-        "qcod/laravel-settings": "^1.2",
+        "laravel/framework": "^12.0|^13.0",
+        "laravel/tinker": "^3.0",
         "spatie/laravel-medialibrary": "^11.15",
         "spatie/laravel-permission": "^6.21",
         "spatie/laravel-translatable": "^6.11"

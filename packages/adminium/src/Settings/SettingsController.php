@@ -22,7 +22,7 @@ final readonly class SettingsController
         $data = $request->all();
 
         foreach ($data as $key => $value) {
-            settings()->group($group)->set($key, $value);
+            adminium_settings()->group($group)->set($key, $value);
         }
 
         return redirect()->route('admin.settings.index', $group)->withSuccess('You have successfully saved settings!');

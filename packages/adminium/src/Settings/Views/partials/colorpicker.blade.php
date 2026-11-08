@@ -1,5 +1,5 @@
 @php
-    $currentValue = settings()->group($group)->get($field['name'], $field['default'] ?? '#000000');
+    $currentValue = adminium_settings()->group($group)->get($field['name'], $field['default'] ?? '#000000');
     $layout = $field['layout'] ?? 'default';
     $size = $field['size'] ?? 'medium';
     $showAlpha = $field['show_alpha'] ?? false;
