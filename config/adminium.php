@@ -53,6 +53,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Available Locales
+    |--------------------------------------------------------------------------
+    |
+    | Locales offered by translatable fields in the panel. The application's
+    | "app.available_locales" config takes precedence when it is present.
+    |
+    */
+
+    'available_locales' => ['en'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Vite Entry Points
     |--------------------------------------------------------------------------
     |

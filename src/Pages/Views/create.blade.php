@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-  $locales = config('app.available_locales');
+  $locales = adminium_locales();
 @endphp
 
 <div x-data="{ activeTab: 'en'}">
@@ -220,7 +220,7 @@
 @endsection
 @push('admin_script')
   <script>
-    const locales = @json(config('app.available_locales'));
+    const locales = @json(adminium_locales());
     locales.forEach(locale => {
       CKEDITOR.replace( 'content.'+locale );
     });

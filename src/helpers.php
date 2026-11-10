@@ -26,6 +26,29 @@ if (! function_exists('adminium_settings')) {
     }
 }
 
+if (! function_exists('adminium_locales')) {
+    /**
+     * Resolve the locales offered by the Adminium translatable fields.
+     *
+     * @return array<int, string>
+     */
+    function adminium_locales(): array
+    {
+        $locales = config('app.available_locales') ?? config('adminium.available_locales', ['en']);
+
+        if (! is_array($locales)) {
+            return ['en'];
+        }
+
+        $locales = array_values(array_filter(
+            $locales,
+            static fn (mixed $locale): bool => is_string($locale) && $locale !== '',
+        ));
+
+        return $locales === [] ? ['en'] : $locales;
+    }
+}
+
 if (! function_exists('adminium_logo')) {
     /**
      * Resolve the public URL for the configured Adminium logo.
