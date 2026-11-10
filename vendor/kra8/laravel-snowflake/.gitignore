@@ -1,5 +1,0 @@
-.DS_Store
-/vendor
-/.vscode
-
-.phpunit.result.cache

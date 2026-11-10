@@ -17,6 +17,7 @@ use Calexandar\Adminium\Pages\PagesServiceProvider;
 use Calexandar\Adminium\Products\ProductsServiceProvider;
 use Calexandar\Adminium\Settings\SettingsServiceProvider;
 use Calexandar\Adminium\Users\UsersServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -56,7 +57,7 @@ final class AdminiumServiceProvider extends ServiceProvider
     {
         $this->registerSuperAdminGate();
 
-        $this->app['router']->aliasMiddleware('adminium.auth', Authenticate::class);
+        $this->app->make(Router::class)->aliasMiddleware('adminium.auth', Authenticate::class);
 
         if (! $this->app->runningInConsole()) {
             return;
