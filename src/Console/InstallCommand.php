@@ -46,8 +46,9 @@ final class InstallCommand extends Command
         $this->line('  5. Add the Adminium entries to vite.config.js:');
         $this->line("       'vendor/calexandar/adminium/resources/css/adminium.css',");
         $this->line("       'vendor/calexandar/adminium/resources/js/adminium.js',");
-        $this->line('  6. Run: npm install && npm run build');
-        $this->line('  7. Sign in at /'.config('adminium.route_prefix', 'admin').'/sign-in with superadmin@gmail.com / password');
+        $this->line('  6. Run: npm install @tailwindplus/elements');
+        $this->line('  7. Run: npm run build');
+        $this->line('  8. Sign in at /'.config('adminium.route_prefix', 'admin').'/sign-in with superadmin@gmail.com / password');
 
         return self::SUCCESS;
     }
