@@ -91,6 +91,8 @@ Point the package at those entries in `config/adminium.php`:
 
 ```php
 'vite' => [
+    'resources/css/app.css',
+    'resources/js/app.js',
     'vendor/calexandar/adminium/resources/css/adminium.css',
     'vendor/calexandar/adminium/resources/js/adminium.js',
 ],
