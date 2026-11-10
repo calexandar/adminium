@@ -9,23 +9,25 @@ A modular Laravel admin panel and CMS built with Tailwind CSS.
 - Node.js (for the frontend assets)
 - A database supported by Laravel
 
-## Install from a private GitHub repository
+## Install from the GitHub repository
 
-Add the repository to the application that will consume the package:
+The standalone package lives on the `package` branch of
+[`calexandar/adminium`](https://github.com/calexandar/adminium). Add the
+repository to the application that will consume the package:
 
 ```bash
-composer config repositories.adminium vcs https://github.com/calexandar/adminium-package
-composer require calexandar/adminium:dev-main
+composer config repositories.adminium vcs https://github.com/calexandar/adminium
+composer require calexandar/adminium:dev-package
 ```
 
-Replace the URL with your private repository. Composer needs access to it:
+Composer needs access to the private repository:
 
 - HTTPS: create a GitHub token and run
   `composer config --global github-oauth.github.com <token>`
-- SSH: use `git@github.com:calexandar/adminium-package.git` and make sure your
-  SSH key is available to Composer.
+- SSH: use `git@github.com:calexandar/adminium.git` and make sure your SSH key
+  is available to Composer.
 
-If the repository has a tagged release, you can require a version instead:
+For a stable install, require a tagged release instead:
 
 ```bash
 composer require calexandar/adminium:^1.0
